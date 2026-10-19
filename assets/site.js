@@ -69,7 +69,9 @@
   const fire = $('#fire'), rtpmEl = $('#rtpm'), ageEl = $('#fireAge'), canvas = $('#spark'), stepsEl = $('#fireSteps');
   if (fire && rtpmEl && canvas && stepsEl) {
     const steps = [...stepsEl.children];
-    const THRESH = 500, CYCLE = 15000;   // ms per loop
+    // The threshold here is for the picture only. The real one is Unleashed's own business and is not published
+    // anywhere on this site (Jason, 2026-10-19); the board's line carries no number.
+    const THRESH = 460, CYCLE = 15000;   // ms per loop
     const ctx = canvas.getContext('2d');
     const css = getComputedStyle(document.documentElement);
     const C = { hot: css.getPropertyValue('--hot').trim() || '#ff2e9a', cyan: css.getPropertyValue('--cyan').trim() || '#27d3ff', blu: css.getPropertyValue('--blu').trim() || '#1f6cff' };
@@ -111,9 +113,12 @@
     const showAge = (ms) => { if (!ageEl) return; const s = Math.floor(ms / 1000); ageEl.textContent = `${pad2(Math.floor(s / 3600))}:${pad2(Math.floor((s % 3600) / 60))}:${pad2(s % 60)} since posted`; };
 
     if (reduce) {
-      // no animation: the board shows the moment the story is published
+      // no animation: the board shows the moment the story is published. The chart is drawn once the box has its
+      // size (a first draw can come before layout, and again whenever the box changes size).
       for (let i = 0; i < 120; i++) pts.push(rate(i / 119) + noise(i / 119));
-      rtpmEl.textContent = '743'; fire.classList.add('is-hot'); light(5, true); draw(1, true); showAge(312000);
+      rtpmEl.textContent = '743'; fire.classList.add('is-hot'); light(5, true); showAge(312000);
+      const still = () => { sizeCanvas(); draw(1, true); };
+      still(); requestAnimationFrame(still); addEventListener('load', still); addEventListener('resize', still);
     } else {
       let start = 0, crossed = false;
       const frame = (now) => {
