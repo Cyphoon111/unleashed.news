@@ -120,15 +120,9 @@
     const pad2 = (n) => String(n).padStart(2, '0');
     const showAge = (ms) => { if (!ageEl) return; const s = Math.floor(ms / 1000); ageEl.textContent = `${pad2(Math.floor(s / 3600))}:${pad2(Math.floor((s % 3600) / 60))}:${pad2(s % 60)} since posted`; };
 
-    if (reduce) {
-      // no animation: the board shows the moment the story is published. The chart is drawn once the box has its
-      // size (a first draw can come before layout, and again whenever the box changes size).
-      for (let i = 0; i < 120; i++) pts.push(rate(i / 119) + noise(i / 119));
-      rtpmEl.textContent = '743'; fire.classList.add('is-hot'); light(5, true); hit(true); showAge(312000);
-      const still = () => { sizeCanvas(); draw(1, true); };
-      still(); requestAnimationFrame(still); addEventListener('load', still); addEventListener('resize', still);
-      setInterval(() => draw(1, true), 350);   // the crossed line's slow pulse
-    } else {
+    // The board loops for everyone, Reduce Motion or not (Jason, 2026-10-19: "this traveling graph dot needs to be
+    // on loop"): the climb and the crossing are the point of it. Reduce Motion still slows the crossed line's flash.
+    {
       let start = 0, crossed = false;
       hit(false);
       const frame = (now) => {
