@@ -1,5 +1,5 @@
 /* UNLEASHED.NEWS — splash page behaviour: the logo board follows the pointer, the first-alert sign-up, and the
-   Fire Alert simulation (a post's retweets per minute climb past the threshold, the event is detected, investigated,
+   Fire Alert simulation (a post's reposts per minute climb past the threshold, the event is detected, investigated,
    confirmed and published first, on a loop). */
 (() => {
   'use strict';
