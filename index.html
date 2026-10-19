@@ -45,9 +45,16 @@
   <section class="hero" aria-labelledby="heroTitle">
     <div class="hero__bg" aria-hidden="true"><i class="glow glow--m"></i><i class="glow glow--b"></i><i class="grid"></i></div>
 
+    <!-- the old TV: static, then the logo pulling into focus on its screen, an MTV-era ident (Jason, 2026-10-19).
+         A video with a transparent background, rendered by tools/render-tv.sh; the still logo for anyone whose
+         browser does not play it. -->
     <div class="board-wrap">
-      <div class="board" id="board">
-        <img class="board__logo" src="assets/logo.webp" width="1983" height="793" alt="UNLEASHED .NEWS" fetchpriority="high">
+      <div class="tv" id="board">
+        <video class="tv__video" autoplay muted loop playsinline disablepictureinpicture poster="assets/tv-poster.png" width="1600" height="978" aria-label="An old television: static, then the UNLEASHED .NEWS logo comes into focus on its screen">
+          <source src="assets/tv.mov" type='video/quicktime; codecs="hvc1"'>
+          <source src="assets/tv.webm" type="video/webm">
+          <img class="board__logo" src="assets/logo.webp" width="1983" height="793" alt="UNLEASHED .NEWS">
+        </video>
         <span class="board__tag board__tag--l" aria-hidden="true">REAL-TIME</span>
         <span class="board__tag board__tag--r" aria-hidden="true">VERIFIED</span>
       </div>

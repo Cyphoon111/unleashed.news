@@ -95,47 +95,37 @@ p { margin: 0; }
   -webkit-mask-image: radial-gradient(ellipse at 50% 35%, #000 20%, transparent 72%); mask-image: radial-gradient(ellipse at 50% 35%, #000 20%, transparent 72%);
 }
 
-/* the logo board: the logo on white, the way it was drawn, with its own neon spill onto the dark page */
-.board-wrap { perspective: 1400px; margin: 0 auto clamp(30px, 5vh, 52px); width: min(880px, 100%); }
-.board {
+/* the old TV (Jason, 2026-10-19): a video with a transparent background, the set cut out of a stock clip, static
+   first, then the logo pulling into focus on its screen, an MTV-era ident (rendered by tools/render-tv.sh). The
+   page's neon glow spills round the set, and the set turns toward the pointer. */
+.board-wrap { perspective: 1400px; margin: 0 auto clamp(30px, 5vh, 52px); width: min(900px, 100%); }
+.tv {
   position: relative;
-  padding: clamp(10px, 2.6vw, 28px) clamp(14px, 3.4vw, 40px);
-  background: #fff;
-  border-radius: clamp(12px, 2vw, 22px);
-  transform: rotate(-2.2deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transform-style: preserve-3d;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.55),
-    0 40px 90px -24px rgba(232, 16, 127, 0.6),
-    0 26px 70px -14px rgba(31, 108, 255, 0.5),
-    0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
   animation: boardFloat 7s ease-in-out infinite;
   transition: transform 0.35s ease;
   will-change: transform;
 }
-.board.is-live { animation: none; transition: transform 0.12s linear; }
-.board::before {
-  content: ''; position: absolute; inset: -8%; z-index: -1; border-radius: 40px;
+.tv.is-live { animation: none; transition: transform 0.12s linear; }
+.tv::before {
+  content: ''; position: absolute; inset: 4% 6%; z-index: -1; border-radius: 40px;
   background: conic-gradient(from 180deg at 50% 50%, var(--mag), var(--blu), var(--cyan), var(--hot), var(--mag));
-  filter: blur(50px); opacity: 0.5;
+  filter: blur(54px); opacity: 0.55;
   animation: spin 16s linear infinite;
 }
-.board::after {
-  /* a light sweep across the glossy board */
-  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
-  background-size: 250% 100%; animation: sheen 9s ease-in-out infinite;
-}
-.board__logo { width: 100%; }
+.tv__video { display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); }
+.tv__video .board__logo { width: 100%; }
+/* the stickers on the cabinet */
 .board__tag {
-  position: absolute; top: -12px; font: italic 800 11px/1 var(--font-m); letter-spacing: 0.2em;
+  position: absolute; top: 2%; z-index: 1; font: italic 800 11px/1 var(--font-m); letter-spacing: 0.2em;
   padding: 6px 10px; border-radius: 6px; color: #fff; text-transform: uppercase;
 }
-.board__tag--l { left: 18px; background: var(--mag); box-shadow: 0 6px 18px -4px rgba(232, 16, 127, 0.9); }
-.board__tag--r { right: 18px; background: var(--blu); box-shadow: 0 6px 18px -4px rgba(31, 108, 255, 0.9); }
+.board__tag--l { left: 6%; background: var(--mag); box-shadow: 0 6px 18px -4px rgba(232, 16, 127, 0.9); transform: rotate(-3deg); }
+.board__tag--r { right: 6%; background: var(--blu); box-shadow: 0 6px 18px -4px rgba(31, 108, 255, 0.9); transform: rotate(2deg); }
 @keyframes boardFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes sheen { 0%, 60%, 100% { background-position: 120% 0; } 30% { background-position: -40% 0; } }
+@media (max-width: 480px) { .board__tag { font-size: 9px; padding: 5px 7px; letter-spacing: 0.14em; } }
 
 .hero__kicker { font: 700 13px/1 var(--font-m); letter-spacing: 0.26em; text-transform: uppercase; color: var(--cyan); margin-bottom: 18px; }
 .hero__kicker::before, .hero__kicker::after { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--hot); vertical-align: middle; margin: 0 12px; }
@@ -294,8 +284,7 @@ p { margin: 0; }
 /* ---------------------------------------------------------------- motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .dot, .glow, .board, .board::before, .board::after, .ticker__track { animation: none !important; }
-  .board { transform: rotate(-2.2deg); }
+  .dot, .glow, .tv, .tv::before, .tv__screen, .tv__glare, .tv__led, .ticker__track { animation: none !important; }
   .ticker__track { width: auto; overflow: hidden; }   /* one still row, cut at the edge */
   .ticker__track span:nth-child(n+8) { display: none; }
 }
