@@ -2,7 +2,7 @@
 
 The splash page for UNLEASHED.NEWS, a real-time news network. A static site: `index.html`, `assets/site.css`, `assets/site.js`, the logo in `assets/`.
 
-Hosted on GitHub Pages from the `main` branch (the `CNAME` file names the domain); the domain's DNS is at GoDaddy, pointed at GitHub Pages the same way theciaasset.com is.
+Hosted on GitHub Pages from the `main` branch (the `CNAME` file names the domain, www.unleashed.news, and the bare domain redirects to it); the domain's DNS is at GoDaddy, pointed at GitHub Pages the same way theciaasset.com is.
 
 The "Get the first alert" box files sign-ups under `site: unleashed.news` in PitchZing (route `/public/book-site/notify`); the list is at `GET /admin/book-site/signups`.
 
