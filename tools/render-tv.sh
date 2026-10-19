@@ -25,6 +25,8 @@ TMP=/tmp/render-tv; mkdir -p "$TMP" "$OUT"
 SET_W=1621; SET_H=991; SET_X=166; SET_Y=78
 SCR_W=1071; SCR_H=713; SCR_X=118; SCR_Y=94
 PANEL_X=1280; PANEL_Y=20; PANEL_W=341; PANEL_H=910   # the control panel: its near-white label is never background
+RIM=30; BASE=80   # only this rim of the set (and its base below) is keyed against white; inside it the cabinet is solid
+OVER=40   # the picture overfills the screen's cut-out by this much on each side, so no gap can show at its edge
 GREEN_FROM=4.0; GREEN_LEN=4.6      # a stretch of the clip where the screen is green
 FPS=30; OUT_W=1600; LOOP=7.5       # seconds per loop
 # the picture's timing: static until SNOW_END, the picture rolls in and pulls into focus by FOCUS_END, a brief
@@ -40,9 +42,11 @@ ffmpeg -v error -y -i "$TMP/set_full.png" -filter_complex "
   [0:v]crop=${SET_W}:${SET_H}:${SET_X}:${SET_Y},format=rgba,split=3[s][ka][kb];
   [ka]colorkey=0xFFFFFF:0.18:0.0,format=rgba,alphaextract,
     drawbox=x=${SCR_X}:y=${SCR_Y}:w=${SCR_W}:h=${SCR_H}:color=white:t=fill,
-    drawbox=x=${PANEL_X}:y=${PANEL_Y}:w=${PANEL_W}:h=${PANEL_H}:color=white:t=fill[ma];
-  [kb]format=gbrp,geq=r='${GREEN}':g='${GREEN}':b='${GREEN}',format=gray,median=radius=5,erosion,erosion[mb];
-  [ma][mb]blend=all_mode=darken[m];
+    drawbox=x=${PANEL_X}:y=${PANEL_Y}:w=${PANEL_W}:h=${PANEL_H}:color=white:t=fill,
+    drawbox=x=${RIM}:y=${RIM}:w=$((SET_W-2*RIM)):h=$((SET_H-RIM-BASE)):color=white:t=fill,erosion,erosion[ma];
+  [kb]format=gbrp,geq=r='${GREEN}':g='${GREEN}':b='${GREEN}',format=gray,median=radius=5,
+    gblur=sigma=5,geq=lum='if(lt(lum(X\,Y)\,215)\,0\,255)'[mb];
+  [ma][mb]blend=all_mode=darken,gblur=sigma=0.7[m];
   [s][m]alphamerge,format=rgba" "$TMP/set.png"
 
 # ---- 2. the picture's focus pull: blur lifting, colour fringing settling -----------------------------------------
@@ -90,7 +94,8 @@ ffmpeg -v error -y \
     [pic][snowA]overlay=0:0:format=auto[s0];
     [s0][snowB]overlay=0:0:format=auto[s1];
     [s1][glass]overlay=0:0:format=auto,format=rgba,
-      pad=${SET_W}:${SET_H}:${SCR_X}:${SCR_Y}:color=0x00000000[screen];
+      scale=$((SCR_W+2*OVER)):$((SCR_H+2*OVER)),
+      pad=${SET_W}:${SET_H}:$((SCR_X-OVER)):$((SCR_Y-OVER)):color=0x00000000[screen];
     [screen][0:v]overlay=0:0:format=auto:alpha=straight,trim=duration=${LOOP},
       scale=${OUT_W}:-2,format=rgba,split=2[v1][v2]" \
   -map "[v1]" -c:v libvpx-vp9 -pix_fmt yuva420p -crf 36 -b:v 0 -row-mt 1 -deadline good -cpu-used 1 -auto-alt-ref 0 -an "$OUT/tv.webm" \
