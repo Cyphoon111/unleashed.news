@@ -66,7 +66,7 @@
   }
 
   /* ---------- the Fire Alert simulation ---------- */
-  const fire = $('#fire'), rtpmEl = $('#rtpm'), ageEl = $('#fireAge'), canvas = $('#spark'), stepsEl = $('#fireSteps');
+  const fire = $('#fire'), rtpmEl = $('#rtpm'), ageEl = $('#fireAge'), canvas = $('#spark'), stepsEl = $('#fireSteps'), threshEl = $('#fireThresh');
   if (fire && rtpmEl && canvas && stepsEl) {
     const steps = [...stepsEl.children];
     // The threshold here is for the picture only. The real one is Unleashed's own business and is not published
@@ -91,9 +91,15 @@
       const w = canvas.width, h = canvas.height, pad = 8 * (w / 600);
       ctx.clearRect(0, 0, w, h);
       const max = 900, y = (v) => h - pad - (v / max) * (h - 2 * pad), x = (i) => pad + (i / 119) * (w - 2 * pad);
-      // threshold line
-      ctx.setLineDash([6, 6]); ctx.strokeStyle = 'rgba(39,211,255,0.55)'; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(pad, y(THRESH)); ctx.lineTo(w - pad, y(THRESH)); ctx.stroke(); ctx.setLineDash([]);
+      // the threshold line: a quiet cyan dash until the curve crosses it, then hot and flashing (Jason, 2026-10-19:
+      // "that dotted line can begin to flash as an indication the threshold has been crossed and triggered"); a slow
+      // pulse rather than a strobe with Reduce Motion
+      const flashOn = !hot || Math.floor(performance.now() / (reduce ? 700 : 260)) % 2 === 0;
+      ctx.setLineDash([6, 6]); ctx.lineWidth = hot ? 2 * (w / 600) : 1;
+      ctx.strokeStyle = hot ? (flashOn ? C.hot : 'rgba(255,46,154,0.25)') : 'rgba(39,211,255,0.55)';
+      ctx.shadowColor = hot && flashOn ? C.hot : 'transparent'; ctx.shadowBlur = hot && flashOn ? 10 * (w / 600) : 0;
+      ctx.beginPath(); ctx.moveTo(pad, y(THRESH)); ctx.lineTo(w - pad, y(THRESH)); ctx.stroke();
+      ctx.setLineDash([]); ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
       if (!pts.length) return;
       // the curve, filled below
       const grad = ctx.createLinearGradient(0, 0, w, 0); grad.addColorStop(0, C.blu); grad.addColorStop(0.7, C.cyan); grad.addColorStop(1, C.hot);
@@ -109,6 +115,8 @@
       if (hot) { ctx.beginPath(); ctx.arc(lx, ly, (9 + 5 * Math.sin(progress * 40)) * (w / 600), 0, Math.PI * 2); ctx.strokeStyle = 'rgba(255,46,154,0.5)'; ctx.lineWidth = 1.5; ctx.stroke(); }
     };
     const light = (n, hot) => steps.forEach((li, i) => { li.classList.toggle('on', i < n); li.classList.toggle('hot', hot && i < 2); });
+    // the chart's label: "threshold" until the crossing, then the alert
+    const hit = (on) => { if (!threshEl) return; threshEl.classList.toggle('fire__thresh--hit', on); threshEl.textContent = on ? 'threshold crossed · investigation triggered' : 'threshold'; };
     const pad2 = (n) => String(n).padStart(2, '0');
     const showAge = (ms) => { if (!ageEl) return; const s = Math.floor(ms / 1000); ageEl.textContent = `${pad2(Math.floor(s / 3600))}:${pad2(Math.floor((s % 3600) / 60))}:${pad2(s % 60)} since posted`; };
 
@@ -116,11 +124,13 @@
       // no animation: the board shows the moment the story is published. The chart is drawn once the box has its
       // size (a first draw can come before layout, and again whenever the box changes size).
       for (let i = 0; i < 120; i++) pts.push(rate(i / 119) + noise(i / 119));
-      rtpmEl.textContent = '743'; fire.classList.add('is-hot'); light(5, true); showAge(312000);
+      rtpmEl.textContent = '743'; fire.classList.add('is-hot'); light(5, true); hit(true); showAge(312000);
       const still = () => { sizeCanvas(); draw(1, true); };
       still(); requestAnimationFrame(still); addEventListener('load', still); addEventListener('resize', still);
+      setInterval(() => draw(1, true), 350);   // the crossed line's slow pulse
     } else {
       let start = 0, crossed = false;
+      hit(false);
       const frame = (now) => {
         if (!start) start = now;
         const t = (now - start) % CYCLE, p = t / CYCLE;
@@ -130,8 +140,8 @@
           pts.length = 0; for (let i = 0; i < n; i++) pts.push(Math.max(4, rate(i / 119) + noise(i / 119)));
           const v = Math.round(pts[pts.length - 1]);
           rtpmEl.textContent = String(v);
-          if (!crossed && v >= THRESH) { crossed = true; fire.classList.add('is-hot'); light(1, true); setTimeout(() => light(2, true), 450); }
-          if (t < 150) { crossed = false; fire.classList.remove('is-hot'); light(0, false); }
+          if (!crossed && v >= THRESH) { crossed = true; fire.classList.add('is-hot'); hit(true); light(1, true); setTimeout(() => light(2, true), 450); }
+          if (t < 150 && crossed) { crossed = false; fire.classList.remove('is-hot'); hit(false); light(0, false); }
           showAge(t * 40);
         } else {
           const v = 740 + Math.round(Math.sin(t / 300) * 14);

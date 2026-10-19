@@ -222,6 +222,11 @@ p { margin: 0; }
 .fire__chart { position: relative; }
 .fire__chart canvas { width: 100%; height: 140px; display: block; border-radius: 10px; background: rgba(0, 0, 0, 0.35); border: 1px solid var(--line); }
 .fire__thresh { position: absolute; right: 10px; top: 8px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); }
+/* once the curve crosses the line: the alert, blinking (a slow pulse with Reduce Motion) */
+.fire__thresh--hit { right: auto; left: 10px; color: var(--hot); font-weight: 700; text-shadow: 0 0 8px rgba(255, 46, 154, 0.6); animation: blink 0.8s steps(2, start) infinite; }
+@keyframes blink { to { opacity: 0.3; } }
+@media (prefers-reduced-motion: reduce) { .fire__thresh--hit { animation: pulseSoft 1.6s ease-in-out infinite; } }
+@keyframes pulseSoft { 50% { opacity: 0.45; } }
 .fire__steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; }
 .fire__steps li { position: relative; padding: 8px 10px 8px 30px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-radius: 8px; border: 1px solid transparent; transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease; }
 .fire__steps li::before { content: ''; position: absolute; left: 11px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: rgba(255, 255, 255, 0.15); transition: background 0.25s ease, box-shadow 0.25s ease; }
