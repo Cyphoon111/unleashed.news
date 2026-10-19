@@ -289,7 +289,6 @@ p { margin: 0; }
 /* ---------------------------------------------------------------- motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .dot, .glow, .tv, .tv::before, .tv__screen, .tv__glare, .tv__led, .ticker__track { animation: none !important; }
-  .ticker__track { width: auto; overflow: hidden; }   /* one still row, cut at the edge */
-  .ticker__track span:nth-child(n+8) { display: none; }
+  .dot, .glow, .tv, .tv::before, .tv__screen, .tv__glare, .tv__led { animation: none !important; }
+  /* the ticker keeps scrolling, Reduce Motion or not (Jason, 2026-10-19: "This section should be scrolling") */
 }
