@@ -123,8 +123,7 @@
     // The board loops for everyone, Reduce Motion or not (Jason, 2026-10-19: "this traveling graph dot needs to be
     // on loop"): the climb and the crossing are the point of it. Reduce Motion still slows the crossed line's flash.
     {
-      let start = 0, crossed = false;
-      hit(false);
+      let start = 0, crossed = false, raf = 0;
       const frame = (now) => {
         if (!start) start = now;
         const t = (now - start) % CYCLE, p = t / CYCLE;
@@ -146,9 +145,17 @@
           showAge(240000 + (t - climb) * 12);
         }
         draw(p, crossed);
-        requestAnimationFrame(frame);
+        raf = requestAnimationFrame(frame);
       };
-      requestAnimationFrame(frame);
+      // The board waits, quiet, until the visitor scrolls to it, then runs from the start (Jason, 2026-10-19: "This
+      // line graph should not begin animating until the end-user actually scrolls to this section"). Scrolled away,
+      // it stops and resets, so the climb and the crossing play again on the next arrival.
+      const quiet = () => { cancelAnimationFrame(raf); raf = 0; start = 0; crossed = false; pts.length = 0; rtpmEl.textContent = '0'; fire.classList.remove('is-hot'); hit(false); light(0, false); showAge(0); sizeCanvas(); draw(0, false); };
+      const run = () => { if (raf) return; quiet(); raf = requestAnimationFrame(frame); };
+      quiet();
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) run(); else quiet(); }), { threshold: 0.35 }).observe(fire);
+      } else run();
     }
   }
 
