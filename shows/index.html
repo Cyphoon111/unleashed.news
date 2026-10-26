@@ -96,7 +96,7 @@
   const MANIFEST = 'https://pub-374a6088117743c78a1a88282fea42de.r2.dev/shows.json';
   const $ = (s) => document.querySelector(s);
   const video = $('#video'), player = $('#player'), grid = $('#grid'), empty = $('#empty');
-  const fmtDur = (s) => { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? `${h}h ${String(m).padStart(2, '0')}m` : `${m} min`; };
+  const fmtDur = (s) => { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? `${h}h ${String(m).padStart(2, '0')}m` : m ? `${m} min` : `${s} s`; };
   const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   let shows = [], current = null, quality = localStorage.getItem('unleashed-quality') || (matchMedia('(max-width: 900px)').matches ? '720' : '1080');
 
