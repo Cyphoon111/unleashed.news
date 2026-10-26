@@ -36,7 +36,9 @@
   .player__quality button[aria-pressed="true"] { color: var(--ink); background: var(--ice); border-color: var(--ice); }
   .player__blurb { padding: 0 18px 16px; font: 400 15px/1.6 var(--font-b); color: var(--txt); background: var(--panel); }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 34px; }
+  /* not ".grid": site.css uses that name for the page's absolute, full-bleed background pattern,
+     and the list inherited it — sitting over the player and swallowing clicks on its controls */
+  .shows__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 34px; }
   .card { display: block; text-decoration: none; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
   .card:hover { transform: translateY(-3px); border-color: rgba(232,16,127,.6); }
   .card[aria-current="true"] { border-color: var(--hot); }
@@ -82,7 +84,7 @@
     <p class="player__blurb" id="pblurb" hidden></p>
   </section>
 
-  <div class="grid" id="grid"></div>
+  <div class="shows__grid" id="grid"></div>
   <p class="empty" id="empty" hidden><b>First show coming soon</b>Recorded in the studio. Published here first.</p>
 </main>
 
