@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shows — UNLEASHED.NEWS</title>
+<meta name="description" content="Watch every Unleashed show. Recorded in the studio, published here first.">
+<link rel="canonical" href="https://www.unleashed.news/shows/">
+<meta name="theme-color" content="#06060b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UNLEASHED.NEWS">
+<meta property="og:title" content="Shows — UNLEASHED.NEWS">
+<meta property="og:description" content="Watch every Unleashed show.">
+<meta property="og:url" content="https://www.unleashed.news/shows/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=4">
+<style>
+  .shows { max-width: var(--max); margin: 0 auto; padding: clamp(28px, 5vw, 56px) var(--gutter) 64px; }
+  .shows__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px; margin-bottom: 22px; }
+  .shows__head h1 { font-size: clamp(40px, 7vw, 72px); color: var(--ice); }
+  .shows__count { font: 500 12px/1 var(--font-m); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  .player { position: relative; background: #000; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(232,16,127,.45); }
+  .player video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+  .player__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 18px; padding: 14px 18px; background: var(--panel); border-top: 1px solid var(--line); }
+  .player__title { font: italic 900 clamp(20px, 3vw, 28px)/1 var(--font-d); color: var(--ice); text-transform: uppercase; }
+  .player__meta { font: 500 12px/1.6 var(--font-m); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .player__meta b { color: var(--ice); font-weight: 700; }
+  .player__quality { display: inline-flex; gap: 6px; }
+  .player__quality button { font: 700 11px/1 var(--font-m); letter-spacing: 0.1em; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; cursor: pointer; }
+  .player__quality button[aria-pressed="true"] { color: var(--ink); background: var(--ice); border-color: var(--ice); }
+  .player__blurb { padding: 0 18px 16px; font: 400 15px/1.6 var(--font-b); color: var(--txt); background: var(--panel); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 34px; }
+  .card { display: block; text-decoration: none; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
+  .card:hover { transform: translateY(-3px); border-color: rgba(232,16,127,.6); }
+  .card[aria-current="true"] { border-color: var(--hot); }
+  .card__img { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .card__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card__dur { position: absolute; right: 8px; bottom: 8px; font: 700 11px/1 var(--font-m); color: var(--ice); background: rgba(6,6,11,.8); padding: 5px 7px; border-radius: 6px; }
+  .card__body { padding: 12px 14px 14px; }
+  .card__title { font: italic 900 20px/1.05 var(--font-d); color: var(--ice); text-transform: uppercase; }
+  .card__date { margin-top: 6px; font: 500 11px/1 var(--font-m); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  .empty { padding: 48px 0; text-align: center; font: 500 14px/1.6 var(--font-m); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .empty b { display: block; font: italic 900 clamp(28px, 5vw, 44px)/1 var(--font-d); color: var(--ice); margin-bottom: 10px; }
+  @media (max-width: 640px) { .player__bar { padding: 12px 14px; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <a class="top__brand" href="/" aria-label="Unleashed.news home">UNLEASHED<span>.NEWS</span></a>
+  <p class="top__status"><i class="dot" aria-hidden="true"></i><span>From the studio</span><b>Shows</b></p>
+  <a class="top__cta" href="/#alert">Get the first alert</a>
+</header>
+
+<main id="main" class="shows">
+  <div class="shows__head">
+    <h1>The <em>Shows</em></h1>
+    <p class="shows__count" id="count"></p>
+  </div>
+
+  <section class="player" id="player" hidden>
+    <video id="video" controls playsinline preload="metadata" poster=""></video>
+    <div class="player__bar">
+      <div>
+        <p class="player__title" id="ptitle"></p>
+        <p class="player__meta" id="pmeta"></p>
+      </div>
+      <div class="player__quality" role="group" aria-label="Quality">
+        <button type="button" data-q="720" aria-pressed="false">720p</button>
+        <button type="button" data-q="1080" aria-pressed="true">1080p HD</button>
+      </div>
+    </div>
+    <p class="player__blurb" id="pblurb" hidden></p>
+  </section>
+
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden><b>First show coming soon</b>Recorded in the studio. Published here first.</p>
+</main>
+
+<footer class="foot">
+  <p class="foot__brand">UNLEASHED<span>.NEWS</span></p>
+  <p class="foot__line">© <span id="year">2026</span> Unleashed.news · Breaking news. Before it breaks.</p>
+</footer>
+
+<script>
+(() => {
+  const MANIFEST = 'https://pub-374a6088117743c78a1a88282fea42de.r2.dev/shows.json';
+  const $ = (s) => document.querySelector(s);
+  const video = $('#video'), player = $('#player'), grid = $('#grid'), empty = $('#empty');
+  const fmtDur = (s) => { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60); return h ? `${h}h ${String(m).padStart(2, '0')}m` : `${m} min`; };
+  const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  let shows = [], current = null, quality = localStorage.getItem('unleashed-quality') || (matchMedia('(max-width: 900px)').matches ? '720' : '1080');
+
+  function play(show, autoplay) {
+    current = show;
+    const t = video.currentTime, wasPlaying = !video.paused;
+    video.poster = show.poster;
+    video.src = show.sources[quality] || show.sources['720'];
+    $('#ptitle').textContent = show.title;
+    $('#pmeta').innerHTML = `<b>${fmtDate(show.publishAt)}</b> · ${fmtDur(show.duration)}`;
+    const blurb = $('#pblurb'); blurb.textContent = show.blurb || ''; blurb.hidden = !show.blurb;
+    player.hidden = false;
+    document.querySelectorAll('.card').forEach((c) => c.setAttribute('aria-current', c.dataset.id === show.id ? 'true' : 'false'));
+    document.querySelectorAll('.player__quality button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.q === quality ? 'true' : 'false'));
+    const key = `unleashed-pos-${show.id}`;
+    video.addEventListener('loadedmetadata', () => { const saved = Number(localStorage.getItem(key) || 0); if (t > 0) video.currentTime = t; else if (saved > 20 && saved < show.duration - 30) video.currentTime = saved; if (autoplay || wasPlaying) video.play().catch(() => {}); }, { once: true });
+    video.ontimeupdate = () => { if (video.currentTime > 10) localStorage.setItem(key, String(Math.floor(video.currentTime))); };
+    history.replaceState(null, '', `#${show.id}`);
+    document.title = `${show.title} — UNLEASHED.NEWS`;
+  }
+
+  document.querySelectorAll('.player__quality button').forEach((b) => b.addEventListener('click', () => {
+    quality = b.dataset.q; localStorage.setItem('unleashed-quality', quality); if (current) play(current, false);
+  }));
+
+  function render() {
+    const now = new Date().toISOString();
+    const live = shows.filter((s) => s.publishAt <= now).sort((a, b) => (a.publishAt < b.publishAt ? 1 : -1));
+    $('#count').textContent = live.length ? `${live.length} show${live.length === 1 ? '' : 's'}` : '';
+    grid.innerHTML = live.map((s) => `
+      <a class="card" href="#${s.id}" data-id="${s.id}" aria-current="false">
+        <div class="card__img"><img src="${s.thumb}" alt="" loading="lazy"><span class="card__dur">${fmtDur(s.duration)}</span></div>
+        <div class="card__body"><p class="card__title">${s.title}</p><p class="card__date">${fmtDate(s.publishAt)}</p></div>
+      </a>`).join('');
+    empty.hidden = live.length > 0;
+    grid.querySelectorAll('.card').forEach((c) => c.addEventListener('click', (e) => { e.preventDefault(); play(live.find((s) => s.id === c.dataset.id), true); player.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+    const wanted = location.hash.slice(1);
+    const first = live.find((s) => s.id === wanted) || live[0];
+    if (first) play(first, false);
+  }
+
+  fetch(MANIFEST, { cache: 'no-store' }).then((r) => r.ok ? r.json() : { shows: [] }).then((m) => { shows = m.shows || []; render(); }).catch(() => { empty.hidden = false; });
+  const year = $('#year'); if (year) year.textContent = String(new Date().getFullYear());
+})();
+</script>
+</body>
+</html>
