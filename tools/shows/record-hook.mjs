@@ -28,7 +28,7 @@ ws.onmessage = (ev) => {
     const file = m.d.eventData.outputPath;
     log(`recording stopped: ${file} — publishing`);
     notify("Unleashed", "Recording saved. Publishing the show to unleashed.news…");
-    const p = spawn(process.execPath, [join(HERE, "publish-show.mjs"), file], { stdio: ["ignore", "pipe", "pipe"] });
+    const p = spawn(process.execPath, [join(HERE, "publish-show.mjs"), file], { cwd: HERE, stdio: ["ignore", "pipe", "pipe"] });
     let tail = "";
     p.stdout.on("data", (d) => { tail = (tail + d).slice(-400); });
     p.stderr.on("data", (d) => { tail = (tail + d).slice(-400); });

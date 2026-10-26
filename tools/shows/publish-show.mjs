@@ -55,9 +55,11 @@ const at = Math.max(1, Math.round(duration * 0.05));
 execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-ss", String(at), "-i", input, "-frames:v", "1", "-vf", "scale=1280:-2", "-q:v", "3", out("poster.jpg")]);
 execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-ss", String(at), "-i", input, "-frames:v", "1", "-vf", "scale=480:-2", "-q:v", "4", out("thumb.jpg")]);
 
-// 3. upload
+// 3. upload. wrangler runs from this folder whatever the caller's working directory is: it makes
+// a .wrangler/cache in the current directory, and the record hook started by On Air inherits "/"
+// as its directory, where that mkdir fails and every upload with it (first real show, 2026-10-26).
 function put(key, file, type) {
-  const r = spawnSync(WRANGLER, ["r2", "object", "put", `${BUCKET}/${key}`, "--file", file, "--content-type", type, "--remote"], { stdio: ["ignore", "ignore", "inherit"] });
+  const r = spawnSync(WRANGLER, ["r2", "object", "put", `${BUCKET}/${key}`, "--file", file, "--content-type", type, "--remote"], { cwd: HERE, stdio: ["ignore", "ignore", "inherit"] });
   if (r.status !== 0) { console.error(`upload failed: ${key}`); process.exit(1); }
   console.log(`  ↑ ${key}`);
 }
