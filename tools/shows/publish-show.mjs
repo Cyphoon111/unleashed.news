@@ -14,7 +14,7 @@ import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
 
 const BUCKET = "unleashed-shows";
-const PUBLIC = "https://pub-374a6088117743c78a1a88282fea42de.r2.dev";
+const PUBLIC = "https://videos.unleashed.news";   // the bucket's custom domain (the r2.dev URL still works as a fallback)
 const HERE = new URL(".", import.meta.url).pathname;
 const WRANGLER = join(HERE, "node_modules", ".bin", "wrangler");
 

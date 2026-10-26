@@ -40,11 +40,11 @@ Running it again with the same `--id` (or the same recording) replaces that show
 
 ## Bucket
 
-`unleashed-shows` on the Cloudflare account, public through the r2.dev development URL
-`https://pub-374a6088117743c78a1a88282fea42de.r2.dev` (rate-limited, meant for development).
-When the unleashed.news DNS moves to Cloudflare, add a custom domain such as
-`videos.unleashed.news` to the bucket in R2 → Settings → Custom Domains and change the
-`PUBLIC` constant in `publish-show.mjs` and `MANIFEST` in `/shows/index.html`.
+`unleashed-shows` on the Cloudflare account, served at **https://videos.unleashed.news**
+(custom domain, since the unleashed.news DNS moved to Cloudflare on 2026-10-26; full DDoS
+protection and caching). The r2.dev development URL
+`https://pub-374a6088117743c78a1a88282fea42de.r2.dev` still works as a fallback. The CORS
+policy in `cors.json` allows the site's origins.
 
 Layout in the bucket: `shows.json` at the root; `<id>/1080.mp4`, `<id>/720.mp4`,
 `<id>/poster.jpg`, `<id>/thumb.jpg` per show. To remove a show: delete its folder with
