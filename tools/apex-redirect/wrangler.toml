@@ -1,0 +1,8 @@
+# unleashed.news (no www) → https://www.unleashed.news, at Cloudflare's edge.
+# The site lives on GitHub Pages under www.unleashed.news, whose certificate does not cover the bare
+# domain; behind Cloudflare's Full (strict) SSL that showed visitors a 526 (Jason, 2026-10-26).
+name = "unleashed-apex-redirect"
+main = "index.mjs"
+compatibility_date = "2026-09-01"
+workers_dev = false
+routes = [{ pattern = "unleashed.news/*", zone_name = "unleashed.news" }]
