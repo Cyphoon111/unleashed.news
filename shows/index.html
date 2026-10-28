@@ -34,6 +34,13 @@
   .player__big svg { width: 36px; height: 36px; margin-left: 4px; }
   .player__big:hover { transform: scale(1.06); border-color: var(--hot); }
   .player.is-playing .player__big { opacity: 0; pointer-events: none; transform: scale(.9); }
+  /* Skip to the next show: bottom right of the picture, from the moment the rolling credits begin (Jason, 2026-10-28) */
+  .player__skip { position: absolute; right: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 11px 14px 11px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(6,6,11,.78); color: var(--ice); font: 700 12px/1 var(--font-m); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: skipIn .35s ease; }
+  .player__skip svg { width: 16px; height: 16px; fill: currentColor; }
+  .player__skip:hover { border-color: var(--hot); background: rgba(232,16,127,.28); }
+  .player__skip[hidden] { display: none; }
+  @keyframes skipIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 640px) { .player__skip { right: 8px; bottom: 8px; padding: 9px 11px 9px 13px; font-size: 11px; } }
 
   .player__controls { background: var(--panel); border-top: 1px solid var(--line); padding: 0 12px 8px; user-select: none; -webkit-user-select: none; }
   .scrub { position: relative; height: 22px; cursor: pointer; touch-action: none; }
@@ -133,6 +140,7 @@
     <div class="player__stage">
       <video id="video" playsinline preload="metadata" poster=""></video>
       <button class="player__big" id="big" type="button" aria-label="Play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
+      <button class="player__skip" id="skip" type="button" hidden><span>Skip to the next show</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5v14l10-7zm11 0h3v14h-3z"/></svg></button>
     </div>
     <div class="player__controls" id="controls">
       <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00">
@@ -217,11 +225,20 @@
     document.querySelectorAll('.player__quality button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.q === quality ? 'true' : 'false'));
     const key = `unleashed-pos-${show.id}`;
     video.addEventListener('loadedmetadata', () => { const saved = Number(store.get(key) || 0); if (t > 0) video.currentTime = t; else if (saved > 20 && saved < show.duration - 30) video.currentTime = saved; if (autoplay || wasPlaying) video.play().catch(() => {}); }, { once: true });
-    video.ontimeupdate = () => { paint(); if (video.currentTime > 10) store.set(key, String(Math.floor(video.currentTime))); };
+    video.ontimeupdate = () => { paint(); paintSkip(); if (video.currentTime > 10) store.set(key, String(Math.floor(video.currentTime))); };
     history.replaceState(null, '', `#${show.id}`);
     document.title = `${show.title} — UNLEASHED.NEWS`;
-    paint();
+    paint(); paintSkip();
   }
+  // The channel's queue: the shows in the order listed. From the moment a show's rolling credits begin (creditsAt, noted by
+  // the studio's record hook when it was recorded), a button at the bottom right offers the next show (Jason, 2026-10-28).
+  const nextShow = () => { const i = shows.findIndex((s) => current && s.id === current.id); return shows.length > 1 && i >= 0 ? shows[(i + 1) % shows.length] : null; };
+  function paintSkip() {
+    const skip = $('#skip'), n = nextShow();
+    skip.hidden = !(n && current && current.creditsAt > 0 && (video.currentTime || 0) >= current.creditsAt);
+  }
+  $('#skip').addEventListener('click', () => { const n = nextShow(); if (n) { video.currentTime = 0; play(n, true); } });
+  video.addEventListener('ended', paintSkip);
 
   document.querySelectorAll('.player__quality button').forEach((b) => b.addEventListener('click', () => {
     quality = b.dataset.q; store.set('unleashed-quality', quality); if (current) play(current, false);

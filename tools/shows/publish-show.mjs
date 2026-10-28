@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Publishes a recorded show to unleashed.news.
 //
-//   node publish-show.mjs "<recording.mp4>" [--title "..."] [--blurb "..."] [--publish-at 2026-11-01T19:00:00-07:00] [--id slug]
+//   node publish-show.mjs "<recording.mp4>" [--title "..."] [--blurb "..."] [--publish-at 2026-11-01T19:00:00-07:00] [--id slug] [--credits-at seconds]
 //
 // What it does: converts the OBS recording into two MP4 renditions (1080p and 720p, hardware
 // H.264, fast-start so playback begins at once), cuts a poster and a thumbnail, uploads
@@ -31,6 +31,7 @@ const id = opt("id", recordedAt.toISOString().slice(0, 16).replace(/[T:]/g, "-")
 const title = opt("title", `Unleashed — ${recordedAt.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`);
 const blurb = opt("blurb", "");
 const publishAt = opt("publish-at", recordedAt.toISOString());
+const creditsAt = opt("credits-at", null);   // seconds into the show when the rolling credits began (from the record hook): the replay offers Skip to the next show from there
 
 const work = mkdtempSync(join(tmpdir(), "unleashed-show-"));
 const out = (n) => join(work, n);
@@ -76,7 +77,7 @@ try { const r = await fetch(`${PUBLIC}/shows.json`, { cache: "no-store" }); if (
 shows = shows.filter((s) => s.id !== id);
 shows.push({ id, title, blurb, recordedAt: recordedAt.toISOString(), publishAt, duration,
   poster: `${PUBLIC}/${id}/poster.jpg`, thumb: `${PUBLIC}/${id}/thumb.jpg`,
-  sources: { "1080": `${PUBLIC}/${id}/1080.mp4`, "720": `${PUBLIC}/${id}/720.mp4` } });
+  sources: { "1080": `${PUBLIC}/${id}/1080.mp4`, "720": `${PUBLIC}/${id}/720.mp4` }, ...(creditsAt != null && Number(creditsAt) >= 0 ? { creditsAt: Number(creditsAt) } : {}) });
 shows.sort((a, b) => (a.publishAt < b.publishAt ? 1 : -1));
 writeFileSync(out("shows.json"), JSON.stringify({ updated: new Date().toISOString(), shows }, null, 2));
 put("shows.json", out("shows.json"), "application/json");
