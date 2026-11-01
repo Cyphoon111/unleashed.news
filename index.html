@@ -3,184 +3,309 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>UNLEASHED.NEWS — Breaking news. Before it breaks.</title>
-<meta name="description" content="Unleashed is a real-time news network. Our Fire Alerts&nbsp;© system catches a story the moment it ignites on social media, we verify every claim against primary sources, and we publish before the mainstream even gets wind of it.">
+<title>UNLEASHED.NEWS — News. Before it breaks.</title>
+<meta name="description" content="Breaking news, verified against primary sources. Unleashed catches a story the moment it ignites and publishes first.">
+<meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://www.unleashed.news/">
-<meta name="theme-color" content="#06060b">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="UNLEASHED.NEWS">
-<meta property="og:title" content="UNLEASHED.NEWS — Breaking news. Before it breaks.">
-<meta property="og:description" content="A real-time news network that catches a story the moment it ignites, verifies every claim against primary sources, and publishes first.">
-<meta property="og:url" content="https://www.unleashed.news/">
-<meta property="og:image" content="https://www.unleashed.news/assets/logo.png">
-<meta property="og:image:width" content="1983">
-<meta property="og:image:height" content="793">
-<meta property="og:image:alt" content="UNLEASHED .NEWS">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="UNLEASHED.NEWS — Breaking news. Before it breaks.">
-<meta name="twitter:description" content="A real-time news network that catches a story the moment it ignites, verifies every claim against primary sources, and publishes first.">
-<meta name="twitter:image" content="https://www.unleashed.news/assets/logo.png">
-<!-- the favicon: the wordmark, UNLEASHED over .NEWS, on the dark tile (Jason, 2026-10-19) -->
+<meta property="og:type" content="website"><meta property="og:site_name" content="UNLEASHED.NEWS"><meta property="og:title" content="UNLEASHED.NEWS — News. Before it breaks.">
+<meta property="og:image" content="https://www.unleashed.news/assets/logo.png"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
-<link rel="icon" href="assets/icon-192.png" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/logo.webp">
-<link rel="stylesheet" href="assets/site.css?v=4">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"NewsMediaOrganization","name":"Unleashed.news","alternateName":"UNLEASHED","url":"https://www.unleashed.news/","logo":"https://www.unleashed.news/assets/logo.png","slogan":"Breaking news. Before it breaks.","description":"A real-time news network that detects viral events as they ignite, verifies every claim against primary sources, and publishes first."}
-</script>
+<style>
+  :root { --ink: #06060b; --ink-2: #0b0b14; --panel: #10101b; --line: rgba(255,255,255,.08); --ice: #eef4ff; --txt: #dce3f0; --muted: #8b93a7; --mag: #e8107f; --hot: #ff2e9a; --blu: #1f6cff; --cyan: #27d3ff;
+    --font-d: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif; --font-b: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif; --font-m: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --gutter: clamp(16px, 3vw, 48px); --max: 1480px; --gap: clamp(20px, 1.5vw, 22px); }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--ink); color: var(--txt); font: 500 16px/1.55 var(--font-b); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; } img { display: block; max-width: 100%; }
+  .skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 14px; background: var(--ice); color: var(--ink); font-weight: 700; border-radius: 8px; } .skip:focus { top: 12px; }
+  .pv { padding: 8px var(--gutter); text-align: center; font: 600 12.5px/1.4 var(--font-m); color: #ffd28a; background: rgba(245,165,36,.12); border-bottom: 1px solid var(--line); }
+  .top { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 var(--gutter); height: 72px; background: rgba(6,6,11,.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .top__brand { font: italic 900 35px/1 var(--font-d); letter-spacing: .02em; color: var(--ice); text-decoration: none; }
+  .top__brand span { color: var(--hot); }
+  .top__date { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--font-m); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--hot); animation: pulse 1.8s ease-out infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,46,154,.65); } 100% { box-shadow: 0 0 0 10px rgba(255,46,154,0); } }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+  main { max-width: var(--max); margin: 0 auto; padding: clamp(22px, 3.5vw, 44px) var(--gutter) 70px; }
+  .mast { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(18px, 2.4vw, 28px); padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font: 700 14.5px/1 var(--font-m); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin: 0; white-space: nowrap; } .eyebrow::before { content: '// '; color: var(--hot); }
+  @media (max-width: 599px) { .eyebrow { font-size: min(14.5px, calc((100vw - 32px) / 31)); letter-spacing: .06em; } }   /* phones: smaller, still one line */
+  .mast h1 { margin: 0; font: 900 clamp(34px, 5vw, 58px)/.95 var(--font-d); text-transform: uppercase; color: var(--ice); }
+  .mast h1 em { font-style: italic; color: transparent; background: linear-gradient(92deg, var(--hot) 0%, var(--mag) 35%, var(--blu) 75%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; }
+  .mast > p { margin: 0; max-width: 460px; font-size: 14.5px; color: var(--muted); }
+  /* the grid: 1 per row on phones, 2 on portrait tablets, 3 on landscape tablets, laptops and desktops */
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; column-gap: var(--gap); row-gap: clamp(30px, 3vw, 44px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 600px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  /* the story card: a large landscape image with the brand strip along its foot, the headline and byline beneath */
+  .sc { min-width: 0; }
+  .sc__link { display: flex; flex-direction: column; gap: 12px; height: 100%; text-decoration: none; color: inherit; }
+  .sc__media { position: relative; display: block; aspect-ratio: 455 / 264; overflow: hidden; background: #000; border-radius: 4px; }
+  .sc__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .5s ease; }
+  .sc__link:hover .sc__media img, .sc__link:focus-visible .sc__media img { transform: scale(1.04); }
+  .sc__media--none { display: grid; place-items: center; background: linear-gradient(135deg, #1a0b1a, #0b1022); }
+  .sc__mark { font: italic 900 34px/1 var(--font-d); color: var(--ice); } .sc__mark b { color: var(--hot); }
+  .sc__strip { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; height: 34px; background: linear-gradient(90deg, rgba(232,16,127,.92), rgba(31,108,255,.92)); }
+  .sc__logo { display: grid; place-items: center; width: 46px; height: 46px; margin: 0 12px 0 6px; align-self: flex-end; background: var(--ice); color: var(--ink); font: italic 900 30px/1 var(--font-d); border: 2px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
+  .sc__logo b { color: var(--hot); }
+  .sc__kicker { align-self: center; font: 800 14px/1 var(--font-d); letter-spacing: .14em; color: #fff; }
+  .sc__play { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(0,0,0,.6); border: 3px solid #fff; }
+  .sc__play::after { content: ''; position: absolute; left: 24px; top: 17px; border-left: 21px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
+  .sc__h { font: 700 21px/1.24 var(--font-b); color: var(--ice); letter-spacing: -.005em; }
+  .sc__link:hover .sc__h, .sc__link:focus-visible .sc__h { color: #ff8cc6; }
+  .sc__link:focus-visible { outline: 2px solid var(--hot); outline-offset: 4px; border-radius: 4px; }
+  .sc__meta { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: -4px; font: 500 14px/1.3 var(--font-b); color: var(--muted); }
+  .sc__by { color: #7fb2ff; font-weight: 600; }
+  @media (max-width: 599px) { .sc__h { font-size: 20px; } }
+  /* D-29a the featured carousel: one large card at a time, sliding left every 5 seconds */
+  .fc { position: relative; margin: 0 0 clamp(30px, 3.4vw, 48px); }
+  .fc__viewport { overflow: hidden; border-radius: 6px; background: #000; }
+  .fc__track { list-style: none; margin: 0; padding: 0; display: flex; will-change: transform; }
+  .fc__slide { flex: 0 0 100%; min-width: 0; display: flex; }
+  .fc__slide > .fc__link { flex: 1 1 auto; width: 100%; }
+  .fc__link { position: relative; display: block; aspect-ratio: 16 / 7; text-decoration: none; color: inherit; }
+  .fc__media { position: absolute; inset: 0; display: block; background: linear-gradient(135deg, #1a0b1a, #0b1022); }
+  .fc__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }   /* D-29c: never cut the top */
+  .fc__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,6,11,0) 34%, rgba(6,6,11,.62) 62%, rgba(6,6,11,.95) 100%); }
+  .fc__play { top: 40%; width: 84px; height: 84px; } .fc__play::after { left: 32px; top: 22px; border-left-width: 28px; border-top-width: 17px; border-bottom-width: 17px; }
+  .fc__text { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; flex-direction: column; gap: 12px; padding: clamp(18px, 3vw, 40px) clamp(18px, 3.2vw, 44px) clamp(54px, 5vw, 66px); max-width: 1080px; }
+  .fc__label { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 0 14px 0 0; height: 34px; background: linear-gradient(90deg, rgba(232,16,127,.95), rgba(31,108,255,.95)); font: 800 15px/1 var(--font-d); letter-spacing: .16em; color: #fff; }
+  .fc__logo { width: 42px; height: 42px; margin: 0 0 0 -2px; font-size: 27px; align-self: center; }
+  .fc__h { font: 800 clamp(26px, 3.3vw, 46px)/1.08 var(--font-d); color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.55); text-wrap: balance; }
+  .fc__link:hover .fc__h, .fc__link:focus-visible .fc__h { color: #ffd6ea; }
+  .fc__dek { font-size: clamp(15px, 1.3vw, 18px); line-height: 1.45; color: #dce3f0; max-width: 860px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .fc__meta { margin: 0; color: #c3cad8; }
+  .fc__controls { position: absolute; right: clamp(14px, 2vw, 26px); bottom: clamp(14px, 1.6vw, 20px); z-index: 2; display: flex; align-items: center; gap: 8px; }
+  .fc__btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); background: rgba(6,6,11,.55); color: #fff; font: 700 20px/1 var(--font-b); cursor: pointer; display: grid; place-items: center; }
+  .fc__ic { display: block; width: 10px; height: 12px; border-left: 3px solid #fff; border-right: 3px solid #fff; }
+  .fc__pause.is-play .fc__ic { width: 0; height: 0; margin-left: 3px; border-left: 11px solid #fff; border-right: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+  .fc__btn:hover, .fc__btn:focus-visible { background: rgba(255,46,154,.85); border-color: #fff; outline: none; }
+  .fc__dots { display: flex; gap: 6px; padding: 0 4px; }
+  .fc__dot { position: relative; width: 28px; height: 6px; padding: 0; border: 0; border-radius: 3px; background: rgba(255,255,255,.35); cursor: pointer; overflow: hidden; }
+  .fc__dot i { position: absolute; inset: 0; width: 0; background: linear-gradient(90deg, var(--hot), var(--blu)); }
+  .fc__dot.is-on i { width: 100%; }
+  .fc.is-playing .fc__dot.is-on i { width: 0; animation: fcFill var(--fc-ms, 5000ms) linear forwards; }
+  @keyframes fcFill { to { width: 100%; } }
+  .fc.is-paused .fc__dot.is-on i { animation: none; width: 100%; }
+  @media (max-width: 1023px) { .fc__link { aspect-ratio: 16 / 9; } }
+  @media (max-width: 599px) {   /* phones: the words sit under the picture */
+    .fc__link { aspect-ratio: auto; display: flex; flex-direction: column; background: var(--panel); }
+    .fc__media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; flex: 0 0 auto; } .fc__media::after { display: none; }
+    .fc__text { position: static; padding: 16px 16px 64px; gap: 10px; } .fc__h { font-size: 25px; text-shadow: none; }
+    .fc__controls { left: 16px; right: 16px; justify-content: space-between; }
+  }
+  .latest { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .latest h2 { margin: 0; font: 900 clamp(24px, 2.4vw, 32px)/1 var(--font-d); letter-spacing: .04em; text-transform: uppercase; color: var(--ice); }
+  .latest h2::before { content: ''; display: inline-block; width: 10px; height: 10px; margin: 0 10px 4px 0; border-radius: 50%; background: var(--hot); vertical-align: middle; }
+  .empty { padding: 40px 0; color: var(--muted); }
+  .pv a { color: inherit; font-weight: 700; } .pv a.on { text-decoration: none; border-bottom: 2px solid currentColor; }
+  /* D-29d the first-alert sign-up, carried over from the splash page */
+  .signup { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px; margin-top: clamp(36px, 4vw, 56px); padding: clamp(20px, 3vw, 34px); background: var(--panel); border-radius: 6px; }
+  .signup h2 { margin: 0 0 6px; font: 900 clamp(24px, 2.4vw, 32px)/1 var(--font-d); letter-spacing: .04em; text-transform: uppercase; color: var(--ice); }
+  .signup__lede { margin: 0; color: var(--muted); font-size: 15px; }
+  .signup__form { flex: 1 1 340px; max-width: 520px; }
+  .signup__row { display: flex; gap: 8px; }
+  .signup__input { flex: 1 1 auto; min-width: 0; padding: 12px 14px; font: 500 16px/1.2 var(--font-b); color: var(--ice); background: var(--ink); border: 1px solid var(--line); border-radius: 4px; }
+  .signup__input:focus { outline: 2px solid var(--blu); outline-offset: 1px; }
+  .signup__btn { flex: 0 0 auto; padding: 12px 18px; font: 800 15px/1 var(--font-d); letter-spacing: .1em; text-transform: uppercase; color: #fff; background: linear-gradient(90deg, var(--mag), var(--blu)); border: 0; border-radius: 4px; cursor: pointer; }
+  .signup__btn[disabled] { opacity: .7; cursor: progress; }
+  .signup__note { margin: 8px 0 0; min-height: 1.4em; font-size: 13.5px; color: var(--muted); }
+  .signup__form.is-done .signup__note { color: var(--blu); font-weight: 600; } .signup__form.is-error .signup__note { color: var(--hot); font-weight: 600; }
+  @media (max-width: 479px) { .signup__row { flex-direction: column; } }
+  .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  :root { --ink: #ffffff; --ink-2: #f5f6fa; --panel: #f3f5f9; --line: rgba(10,12,20,.12); --ice: #0b0b14; --txt: #262c38; --muted: #5d6676; --hot: #e0107a; --mag: #c80d6c; --blu: #1f5fe0; --cyan: #0e7fb0; }
+  .top { background: rgba(255,255,255,.88); box-shadow: 0 1px 0 rgba(10,12,20,.06); }
+  .pv { color: #7a4a00; background: #fff4e0; }
+  .sc__media { background: #e9ecf2; box-shadow: 0 1px 2px rgba(10,12,20,.08); }
+  .sc__by { color: #1a56d6; }
+  .fc__meta .sc__by { color: #9cc2ff; }
+  .sc__link:hover .sc__h, .sc__link:focus-visible .sc__h { color: var(--hot); }
+  .sc__logo { background: #fff; color: #0b0b14; border-color: #fff; } .sc__logo b { color: #e0107a; }
+  .fc__viewport { background: var(--panel); }
+  .fc__viewport { box-shadow: 0 10px 30px -12px rgba(10,12,20,.35); }
+  @media (max-width: 599px) {
+    .fc__link { background: var(--panel); }
+    .fc__h { color: var(--ice); } .fc__dek { color: var(--txt); } .fc__meta { color: var(--muted); } .fc__meta .sc__by { color: #1a56d6; }
+    .fc__link:hover .fc__h { color: var(--hot); }
+  }
+  ::selection { background: var(--hot); color: #fff; }
+
+  .foot { border-top: 1px solid var(--line); padding: 28px var(--gutter) max(28px, env(safe-area-inset-bottom)); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; max-width: var(--max); margin: 0 auto; }
+  .foot__brand { margin: 0; font: italic 900 20px/1 var(--font-d); color: var(--ice); } .foot__brand span { color: var(--hot); }
+  .foot__line { margin: 0; font: 500 13px/1.5 var(--font-m); color: var(--muted); }
+  @media (max-width: 560px) { .top__date span { display: none; } }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <a class="top__brand" href="/" aria-label="Unleashed.news home">UNLEASHED<span>.NEWS</span></a>
-  <p class="top__status"><i class="dot" aria-hidden="true"></i><span>Signal board armed</span><b>Launching soon</b></p>
-  <a class="top__cta" href="#alert">Get the first alert</a>
+  <p class="top__date"><i class="dot" aria-hidden="true"></i><span>Sunday, November 1, 2026</span></p>
 </header>
-
 <main id="main">
-  <!-- ======================= HERO ======================= -->
-  <section class="hero" aria-labelledby="heroTitle">
-    <div class="hero__bg" aria-hidden="true"><i class="glow glow--m"></i><i class="glow glow--b"></i><i class="grid"></i></div>
-
-    <!-- the old TV: static, then the logo pulling into focus on its screen, an MTV-era ident (Jason, 2026-10-19).
-         A video with a transparent background, rendered by tools/render-tv.sh; the still logo for anyone whose
-         browser does not play it. -->
-    <div class="board-wrap">
-      <div class="tv" id="board">
-        <video class="tv__video" autoplay muted loop playsinline disablepictureinpicture poster="assets/tv-poster.png" width="1600" height="978" aria-label="An old television: static, then the UNLEASHED .NEWS logo comes into focus on its screen">
-          <source src="assets/tv.mov" type='video/quicktime; codecs="hvc1"'>
-          <source src="assets/tv.webm" type="video/webm">
-          <img class="board__logo" src="assets/logo.webp" width="1983" height="793" alt="UNLEASHED .NEWS">
-        </video>
-        <span class="board__tag board__tag--l" aria-hidden="true">REAL-TIME</span>
-        <span class="board__tag board__tag--r" aria-hidden="true">VERIFIED</span>
-      </div>
-    </div>
-
-    <p class="hero__kicker">The news network that gets there first</p>
-    <h1 id="heroTitle" class="hero__title">Breaking news.<br><em>Before it breaks.</em></h1>
-    <p class="hero__lede">Unleashed watches the world's social feeds in real time, catches a story the moment it ignites, verifies every claim against primary sources, and publishes it <strong>before the mainstream even gets wind of it.</strong></p>
-
-    <form class="alert" id="alert" novalidate>
-      <label class="sr" for="alertEmail">Email address</label>
-      <div class="alert__row">
-        <input class="alert__input" id="alertEmail" type="email" name="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="your@email.com" required>
-        <button class="alert__btn" id="alertBtn" type="submit"><span>Get the first alert</span></button>
-      </div>
-      <p class="alert__note" id="alertNote">One email when we go live. No spam, no selling your address, ever.</p>
-    </form>
-
-    <ul class="proof" aria-label="What Unleashed stands for">
-      <li><b>01</b>Real-time detection</li>
-      <li><b>02</b>Primary-source verified</li>
-      <li><b>03</b>Published first</li>
-    </ul>
-  </section>
-
-  <!-- ======================= TICKER ======================= -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <span>Fire Alerts&nbsp;©</span><span>RPM threshold crossed</span><span>Viral event detected</span><span>Investigating</span><span>CAT 1 source confirmed</span><span>Story published</span><span>Mainstream: still asleep</span>
-      <span>Fire Alerts&nbsp;©</span><span>RPM threshold crossed</span><span>Viral event detected</span><span>Investigating</span><span>CAT 1 source confirmed</span><span>Story published</span><span>Mainstream: still asleep</span>
-    </div>
+  <div class="mast">
+    <div><p class="eyebrow">All claims verified against primary sources</p><h1>News. <em>Before it breaks</em></h1></div>
+    <p>Every story is investigated from the original records, and every key claim links to its source.</p>
   </div>
-
-  <!-- ======================= HOW ======================= -->
-  <section class="how" aria-labelledby="howTitle">
-    <div class="how__head">
-      <p class="eyebrow">How we beat the mainstream media to the story</p>
-      <h2 id="howTitle">Detect. Verify. <em>Publish first.</em></h2>
+  <section class="fc" aria-roledescription="carousel" aria-label="Featured news" data-interval="5000">
+    <div class="fc__viewport"><ul class="fc__track"><li class="fc__slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+      <a class="fc__link" href="/news/2026/11/epstein-sought-laurene-powell-jobs-email-in-2015-when/">
+        <span class="fc__media"><img src="/news/2026/11/epstein-sought-laurene-powell-jobs-email-in-2015-when/photo.jpg" alt="Laurene Powell Jobs speaks on a panel at the Arctic Circle Assembly in October 2017." loading="eager" decoding="async" fetchpriority="high"></span>
+        <span class="fc__text">
+          <span class="fc__label"><span class="sc__logo fc__logo" aria-hidden="true">U<b>.</b></span><span>FEATURED NEWS</span></span>
+          <span class="fc__h">Epstein Sought Laurene Powell Jobs’ Email in 2015 When ‘Her Boat’ Was Next to His Island</span>
+          <span class="fc__dek">A swimsuit photo said to show The Atlantic’s owner with Ghislaine Maxwell has spread for five years without a source, while Epstein’s own emails, released by the Justice Department, show him hunting for Laurene Powell Jobs’ address and getting her name wrong.</span>
+          <span class="sc__meta fc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>5 min read</span></span>
+        </span>
+      </a>
+    </li><li class="fc__slide" role="group" aria-roledescription="slide" aria-label="2 of 5" aria-hidden="true">
+      <a class="fc__link" href="/news/2026/11/viral-post-called-two-photos-proof-of-epstein-impunity/" tabindex="-1">
+        <span class="fc__media"><img src="/news/2026/11/viral-post-called-two-photos-proof-of-epstein-impunity/photos.jpg" alt="Top: Ghislaine Maxwell and Jeffrey Epstein greet President Bill Clinton at a White House reception. Bottom: Maxwell seated behind a “Maxwell” nameplate at the United Nations." loading="eager" decoding="async"></span>
+        <span class="fc__text">
+          <span class="fc__label"><span class="sc__logo fc__logo" aria-hidden="true">U<b>.</b></span><span>FEATURED NEWS</span></span>
+          <span class="fc__h">Viral Post Called Two Photos Proof of Epstein Impunity. Both Show a Woman Serving 20 Years</span>
+          <span class="fc__dek">Records show the White House picture came from a 1993 donors’ reception and the U.N. picture from ocean-advocacy events, and the woman in both has lost every challenge to her sex-trafficking conviction.</span>
+          <span class="sc__meta fc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>6 min read</span></span>
+        </span>
+      </a>
+    </li><li class="fc__slide" role="group" aria-roledescription="slide" aria-label="3 of 5" aria-hidden="true">
+      <a class="fc__link" href="/news/2026/11/epstein-told-a-think-tank-how-to-pitch-bill/" tabindex="-1">
+        <span class="fc__media"><img src="/news/2026/11/epstein-told-a-think-tank-how-to-pitch-bill/document.jpg" alt="The email headed “Preparing for pandemics,” forwarded to Jeffrey Epstein on March 20, 2015, with names redacted." loading="eager" decoding="async"></span>
+        <span class="fc__text">
+          <span class="fc__label"><span class="sc__logo fc__logo" aria-hidden="true">U<b>.</b></span><span>FEATURED NEWS</span></span>
+          <span class="fc__h">Epstein Told a Think Tank How to Pitch Bill Gates: ‘Bill Will Not Go’</span>
+          <span class="fc__dek">The 2015 email quoted across X named the International Committee of the Red Cross, not the CDC, and was about co-branding a public conference; the same files show Jeffrey Epstein vetting the conference’s invitation to Bill Gates.</span>
+          <span class="sc__meta fc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>5 min read</span></span>
+        </span>
+      </a>
+    </li><li class="fc__slide" role="group" aria-roledescription="slide" aria-label="4 of 5" aria-hidden="true">
+      <a class="fc__link" href="/news/2026/11/epstein-asked-the-cia-if-it-was-watching-him/" tabindex="-1">
+        <span class="fc__media"><img src="/news/2026/11/epstein-asked-the-cia-if-it-was-watching-him/document.jpg" alt="The CIA’s letter of July 29, 2011, to Epstein’s lawyer, with passages highlighted." loading="eager" decoding="async"></span>
+        <span class="fc__text">
+          <span class="fc__label"><span class="sc__logo fc__logo" aria-hidden="true">U<b>.</b></span><span>FEATURED NEWS</span></span>
+          <span class="fc__h">Epstein Asked the CIA If It Was Watching Him. The Agency Answered a Different Question.</span>
+          <span class="fc__dek">Newly released CIA case files show Jeffrey Epstein went to the agency twice, openly in his own name in 1999 and through his lawyer in 2011, and the search the CIA chose to describe tells its own story.</span>
+          <span class="sc__meta fc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>5 min read</span></span>
+        </span>
+      </a>
+    </li><li class="fc__slide" role="group" aria-roledescription="slide" aria-label="5 of 5" aria-hidden="true">
+      <a class="fc__link" href="/news/2026/11/architects-drew-epstein-an-underground-theater-with-an-exit/" tabindex="-1">
+        <span class="fc__media"><img src="/news/2026/11/architects-drew-epstein-an-underground-theater-with-an-exit/poster.jpg" alt="Drone footage of the blue-and-white striped building on Little St. James, from a video reconstruction of the island." loading="eager" decoding="async"><span class="sc__play fc__play" aria-label="Video"></span></span>
+        <span class="fc__text">
+          <span class="fc__label"><span class="sc__logo fc__logo" aria-hidden="true">U<b>.</b></span><span>FEATURED NEWS</span></span>
+          <span class="fc__h">Architects Drew Epstein an Underground Theater With an ‘Exit Tunnel’ While He Was in Jail</span>
+          <span class="fc__dek">Architects’ drawings, permit emails and FBI search logs released by the Justice Department show hidden spaces planned for Little St. James while Epstein was in custody, and a 2011 decision not to give regulators the list of buildings they demanded.</span>
+          <span class="sc__meta fc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>6 min read · Video</span></span>
+        </span>
+      </a>
+    </li></ul></div>
+    <div class="fc__controls">
+      <button type="button" class="fc__btn fc__prev" aria-label="Previous featured story"><span aria-hidden="true">‹</span></button>
+      <div class="fc__dots" role="tablist" aria-label="Choose a featured story"><button type="button" class="fc__dot is-on" role="tab" aria-label="Featured story 1" aria-selected="true"><i></i></button><button type="button" class="fc__dot" role="tab" aria-label="Featured story 2"><i></i></button><button type="button" class="fc__dot" role="tab" aria-label="Featured story 3"><i></i></button><button type="button" class="fc__dot" role="tab" aria-label="Featured story 4"><i></i></button><button type="button" class="fc__dot" role="tab" aria-label="Featured story 5"><i></i></button></div>
+      <button type="button" class="fc__btn fc__pause" aria-label="Pause the carousel"><span class="fc__ic" aria-hidden="true"></span></button>
+      <button type="button" class="fc__btn fc__next" aria-label="Next featured story"><span aria-hidden="true">›</span></button>
     </div>
-
-    <div class="how__grid">
-      <ol class="steps">
-        <li class="step">
-          <span class="step__n">01</span>
-          <h3 class="step__t">Detect <small>Fire Alerts&nbsp;©</small></h3>
-          <p>Our researchers and investigators work around the clock, culling open-source and social media for breaking news, backed by <b>Fire Alerts&nbsp;©</b>, our advanced AI system. It watches keywords, phrases, handles and hashtags and measures how fast each post is being shared, minute by minute. On X that's <b>reposts per minute (RPM)</b>. The moment a post crosses our designated thresholds, it's on a trajectory to become a viral event, and we know it first.</p>
-        </li>
-        <li class="step">
-          <span class="step__n">02</span>
-          <h3 class="step__t">Verify <small>No source, no story</small></h3>
-          <p>Every developing event is investigated before a word is written. Every claim we make is backed by a primary source (<b>CAT 1</b>), or validated by a <b>CAT 2</b> or <b>CAT 3</b> source. Nothing publishes on a rumor. Not once, not ever.</p>
-        </li>
-        <li class="step">
-          <span class="step__n">03</span>
-          <h3 class="step__t">Publish <small>First, and bulletproof</small></h3>
-          <p>Our writers work around the clock. Once every claim is nailed down, comprehensive, sourced stories go out before the rest of the news networks catch on and before the rest of the world starts to read about it. Investigative reports built to survive any challenge.</p>
-        </li>
-      </ol>
-
-      <div class="fire" id="fire" role="img" aria-label="Simulation of the Fire Alerts&nbsp;© board: a post's reposts per minute climb past the threshold, a viral event is detected, investigated, confirmed with a CAT 1 source, and published first.">
-        <div class="fire__head">
-          <span class="fire__tag"><i class="dot dot--hot" aria-hidden="true"></i>Fire Alerts&nbsp;©</span>
-          <span class="fire__sim">Simulation · the live board arms at launch</span>
-        </div>
-        <div class="fire__post">
-          <span class="fire__src">X · post 4471</span>
-          <span class="fire__age" id="fireAge">00:00:00</span>
-        </div>
-        <div class="fire__rtpm">
-          <b id="rtpm">0</b>
-          <span>RPM<small>reposts per minute</small></span>
-        </div>
-        <div class="fire__chart">
-          <canvas id="spark" width="600" height="160"></canvas>
-          <span class="fire__thresh" id="fireThresh">threshold</span>
-        </div>
-        <ol class="fire__steps" id="fireSteps">
-          <li>Threshold crossed</li>
-          <li>Viral event detected</li>
-          <li>Investigating</li>
-          <li>CAT 1 source confirmed</li>
-          <li>Published, first</li>
-        </ol>
+  </section>
+  <div class="latest"><h2>Latest news</h2></div>
+  <ul class="grid" aria-label="Latest stories"><li class="sc">
+      <a class="sc__link" href="/news/2026/11/epstein-sought-laurene-powell-jobs-email-in-2015-when/">
+        <span class="sc__media">
+          <img src="/news/2026/11/epstein-sought-laurene-powell-jobs-email-in-2015-when/photo.jpg" alt="Laurene Powell Jobs speaks on a panel at the Arctic Circle Assembly in October 2017." loading="eager" decoding="async">
+          
+          <span class="sc__strip"><span class="sc__logo" aria-hidden="true">U<b>.</b></span><span class="sc__kicker">BREAKING NEWS</span></span>
+        </span>
+        <span class="sc__h">Epstein Sought Laurene Powell Jobs’ Email in 2015 When ‘Her Boat’ Was Next to His Island</span>
+        <span class="sc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>5 min read</span></span>
+      </a>
+    </li><li class="sc">
+      <a class="sc__link" href="/news/2026/11/epstein-asked-the-cia-if-it-was-watching-him/">
+        <span class="sc__media">
+          <img src="/news/2026/11/epstein-asked-the-cia-if-it-was-watching-him/document.jpg" alt="The CIA’s letter of July 29, 2011, to Epstein’s lawyer, with passages highlighted." loading="eager" decoding="async">
+          
+          <span class="sc__strip"><span class="sc__logo" aria-hidden="true">U<b>.</b></span><span class="sc__kicker">BREAKING NEWS</span></span>
+        </span>
+        <span class="sc__h">Epstein Asked the CIA If It Was Watching Him. The Agency Answered a Different Question.</span>
+        <span class="sc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>5 min read</span></span>
+      </a>
+    </li><li class="sc">
+      <a class="sc__link" href="/news/2026/11/viral-post-called-two-photos-proof-of-epstein-impunity/">
+        <span class="sc__media">
+          <img src="/news/2026/11/viral-post-called-two-photos-proof-of-epstein-impunity/photos.jpg" alt="Top: Ghislaine Maxwell and Jeffrey Epstein greet President Bill Clinton at a White House reception. Bottom: Maxwell seated behind a “Maxwell” nameplate at the United Nations." loading="eager" decoding="async">
+          
+          <span class="sc__strip"><span class="sc__logo" aria-hidden="true">U<b>.</b></span><span class="sc__kicker">BREAKING NEWS</span></span>
+        </span>
+        <span class="sc__h">Viral Post Called Two Photos Proof of Epstein Impunity. Both Show a Woman Serving 20 Years</span>
+        <span class="sc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>6 min read</span></span>
+      </a>
+    </li><li class="sc">
+      <a class="sc__link" href="/news/2026/11/epstein-told-a-think-tank-how-to-pitch-bill/">
+        <span class="sc__media">
+          <img src="/news/2026/11/epstein-told-a-think-tank-how-to-pitch-bill/document.jpg" alt="The email headed “Preparing for pandemics,” forwarded to Jeffrey Epstein on March 20, 2015, with names redacted." loading="eager" decoding="async">
+          
+          <span class="sc__strip"><span class="sc__logo" aria-hidden="true">U<b>.</b></span><span class="sc__kicker">BREAKING NEWS</span></span>
+        </span>
+        <span class="sc__h">Epstein Told a Think Tank How to Pitch Bill Gates: ‘Bill Will Not Go’</span>
+        <span class="sc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>5 min read</span></span>
+      </a>
+    </li><li class="sc">
+      <a class="sc__link" href="/news/2026/11/architects-drew-epstein-an-underground-theater-with-an-exit/">
+        <span class="sc__media">
+          <img src="/news/2026/11/architects-drew-epstein-an-underground-theater-with-an-exit/poster.jpg" alt="Drone footage of the blue-and-white striped building on Little St. James, from a video reconstruction of the island." loading="eager" decoding="async">
+          <span class="sc__play" aria-label="Video"></span>
+          <span class="sc__strip"><span class="sc__logo" aria-hidden="true">U<b>.</b></span><span class="sc__kicker">BREAKING NEWS</span></span>
+        </span>
+        <span class="sc__h">Architects Drew Epstein an Underground Theater With an ‘Exit Tunnel’ While He Was in Jail</span>
+        <span class="sc__meta"><span class="sc__by">Unleashed.news</span><time datetime="2026-11-01T21:08:00.000Z">Nov. 1, 2026</time><span>6 min read · Video</span></span>
+      </a>
+    </li></ul>
+  <section class="signup" aria-labelledby="signupTitle">
+    <div><h2 id="signupTitle">Get the first alert</h2><p class="signup__lede">The story, the moment we can prove it.</p></div>
+    <form class="signup__form" id="alert" novalidate>
+      <label class="sr" for="alertEmail">Email address</label>
+      <div class="signup__row">
+        <input class="signup__input" id="alertEmail" type="email" name="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="your@email.com" required>
+        <button class="signup__btn" id="alertBtn" type="submit">Sign up</button>
       </div>
-    </div>
-  </section>
-
-  <!-- ======================= CREED ======================= -->
-  <section class="creed" aria-labelledby="creedTitle">
-    <div class="creed__bg" aria-hidden="true"></div>
-    <p class="eyebrow eyebrow--light">Our standard</p>
-    <h2 id="creedTitle" class="creed__title">The mainstream reports what it's handed.<br><em>We report what we can prove.</em></h2>
-    <p class="creed__lines"><span>Detect it.</span><span>Investigate it.</span><span>Prove it.</span><span>Report it.</span></p>
-    <p class="creed__sub">Source driven independent news. Every claim sourced. Every report bulletproof.</p>
-  </section>
-
-  <!-- ======================= SOURCING ======================= -->
-  <section class="cats" aria-labelledby="catsTitle">
-    <div class="how__head">
-      <p class="eyebrow">The sourcing standard</p>
-      <h2 id="catsTitle">Three categories. <em>One rule.</em></h2>
-    </div>
-    <div class="cats__grid">
-      <div class="cat cat--1"><span class="cat__n">CAT 1</span><h3>Primary source</h3><p>The document, the footage, the data, the person who was there. First-hand and in the open.</p></div>
-      <div class="cat cat--2"><span class="cat__n">CAT 2</span><h3>Direct confirmation</h3><p>An on-the-record confirmation from a party with direct knowledge, validating the claim.</p></div>
-      <div class="cat cat--3"><span class="cat__n">CAT 3</span><h3>Independent corroboration</h3><p>Separate, verifiable reporting that corroborates the claim on its own.</p></div>
-    </div>
-    <p class="cats__rule"><b>The rule:</b> no claim is published without a CAT 1 source, or a CAT 2 or CAT 3 source validating it. The mainstream doesn't practice that religiously. We do.</p>
-  </section>
-
-  <!-- ======================= CLOSE ======================= -->
-  <section class="close" aria-labelledby="closeTitle">
-    <h2 id="closeTitle" class="close__title">Be there when it <em>breaks.</em></h2>
-    <p class="close__sub">Join the list and get the first alert the day Unleashed goes live.</p>
-    <a class="close__btn" href="#alert">Get the first alert</a>
+      <p class="signup__note" id="alertNote">No spam, no selling your address, ever.</p>
+    </form>
   </section>
 </main>
-
+<script>(()=>{const root=document.querySelector('.fc');if(!root)return;const track=root.querySelector('.fc__track');const slides=[...track.children];const n=slides.length;if(n<2)return;
+const ms=+root.dataset.interval||5000;root.style.setProperty('--fc-ms',ms+'ms');track.appendChild(slides[0].cloneNode(true));track.lastElementChild.setAttribute('aria-hidden','true');track.lastElementChild.querySelector('a').tabIndex=-1;
+const dots=[...root.querySelectorAll('.fc__dot')];const pauseBtn=root.querySelector('.fc__pause');const calm=false;let idx=0,timer=null,paused=false,hover=false,focus=false;
+const mark=()=>{const k=idx%n;dots.forEach((d,i)=>{d.classList.toggle('is-on',i===k);d.setAttribute('aria-selected',i===k?'true':'false');const di=d.querySelector('i');di.style.animation='none';void di.offsetWidth;di.style.animation=''});slides.forEach((s,i)=>{const on=i===k;s.toggleAttribute('aria-hidden',!on);s.querySelector('a').tabIndex=on?0:-1})};
+const go=(i,anim=true)=>{track.style.transition=anim&&!calm?'transform .75s cubic-bezier(.65,0,.35,1)':'none';track.style.transform='translateX('+(-i*100)+'%)';idx=i;mark()};
+track.addEventListener('transitionend',()=>{if(idx>=n)go(0,false)});const settle=()=>{if(calm&&idx>=n)go(0,false)};
+const next=()=>{go(idx+1);settle()};const prev=()=>{if(idx===0){go(n,false);void track.offsetWidth;go(n-1)}else go(idx-1)};
+const playing=()=>!paused&&!hover&&!focus&&!document.hidden;
+const sync=()=>{clearInterval(timer);root.classList.toggle('is-playing',playing());root.classList.toggle('is-paused',!playing());if(playing())timer=setInterval(next,ms);pauseBtn.setAttribute('aria-label',paused?'Play the carousel':'Pause the carousel');pauseBtn.classList.toggle('is-play',paused)};
+const manual=(f)=>{f();sync()};
+root.querySelector('.fc__next').addEventListener('click',()=>manual(next));root.querySelector('.fc__prev').addEventListener('click',()=>manual(prev));
+dots.forEach((d,i)=>d.addEventListener('click',()=>manual(()=>go(i))));pauseBtn.addEventListener('click',()=>{paused=!paused;sync()});
+root.addEventListener('mouseenter',()=>{hover=true;sync()});root.addEventListener('mouseleave',()=>{hover=false;sync()});
+root.addEventListener('focusin',()=>{focus=true;sync()});root.addEventListener('focusout',e=>{if(!root.contains(e.relatedTarget)){focus=false;sync()}});
+document.addEventListener('visibilitychange',sync);
+root.addEventListener('keydown',e=>{if(e.key==='ArrowRight')manual(next);if(e.key==='ArrowLeft')manual(prev)});
+let x0=null;root.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});root.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)manual(dx<0?next:prev)});
+mark();sync();})();</script>
+<script>(()=>{const day=document.querySelector('.top__date span');if(day)day.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+const URL_='https://pitchzing-haro.pitchzing.workers.dev/public/book-site/notify',QKEY='unl_signup_queue';const form=document.getElementById('alert'),email=document.getElementById('alertEmail'),btn=document.getElementById('alertBtn'),note=document.getElementById('alertNote');if(!form)return;const first=note.textContent;
+const body=(a)=>({email:a,role:'reader',site:'unleashed.news',page:location.pathname+location.search});
+const send=async(b)=>{const r=await fetch(URL_,{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify(b)});let j={};try{j=await r.json()}catch{}return{ok:r.ok,status:r.status,error:j.error}};
+const readQ=()=>{try{const q=JSON.parse(localStorage.getItem(QKEY)||'[]');return Array.isArray(q)?q:[]}catch{return[]}};const writeQ=(q)=>{try{if(q.length)localStorage.setItem(QKEY,JSON.stringify(q.slice(-10)));else localStorage.removeItem(QKEY)}catch{}};
+const flushQ=async()=>{const left=[];for(const b of readQ()){try{const r=await send(b);if(!r.ok&&r.status!==400)left.push(b)}catch{left.push(b)}}writeQ(left)};if(readQ().length)setTimeout(flushQ,1500);addEventListener('online',flushQ);
+const say=(c,t)=>{form.classList.remove('is-done','is-error');if(c)form.classList.add(c);note.textContent=t};const done=(a)=>{say('is-done',"You're on the list. The first alert goes to "+a+'.');email.value=''};const keep=(a)=>writeQ([...readQ().filter((b)=>b.email!==a),body(a)]);
+form.addEventListener('submit',async(e)=>{e.preventDefault();const a=email.value.trim().toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(a)){say('is-error','Please enter a valid email address.');email.focus();return}btn.disabled=true;say('','Adding you to the list…');
+try{const r=await send(body(a));if(r.ok)done(a);else if(r.status===400||r.status===429)say('is-error',r.error||'That address was not accepted. Please check it and try again.');else{keep(a);done(a)}}catch{keep(a);done(a)}btn.disabled=false});
+email.addEventListener('input',()=>{if(form.classList.contains('is-error'))say('',first)});})();</script>
 <footer class="foot">
   <p class="foot__brand">UNLEASHED<span>.NEWS</span></p>
-  <p class="foot__line">© <span id="year">2026</span> Unleashed.news · Breaking news. Before it breaks.</p>
+  <p class="foot__line">© 2026 Unleashed.news · NEWS. BEFORE IT BREAKS</p>
 </footer>
-
-<script src="assets/site.js?v=5" defer></script>
 </body>
 </html>

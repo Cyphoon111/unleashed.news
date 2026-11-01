@@ -7,3 +7,5 @@ Hosted on GitHub Pages from the `main` branch (the `CNAME` file names the domain
 The "Get the first alert" box files sign-ups under `site: unleashed.news` in PitchZing (route `/public/book-site/notify`); the list is at `GET /admin/book-site/signups`.
 
 To preview locally: `python3 -m http.server 8643 --bind 127.0.0.1` in this folder, then open http://127.0.0.1:8643/.
+
+The homepage, `news/` and `sitemap.xml` are built from the engine's stories by `tools/publish-site.mjs` in the private engine repo; do not edit them by hand. The first splash page is kept at `/splash/`.
