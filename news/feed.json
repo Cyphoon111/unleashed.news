@@ -3,6 +3,15 @@
  "home_page_url": "https://www.unleashed.news/news/",
  "items": [
   {
+   "id": 10,
+   "kicker": "BREAKING NEWS",
+   "headline": "Hoffman Sent $16 Million to Pro-Talarico Super PAC After Admitting More Epstein Meetings",
+   "path": "/news/2026/11/hoffman-sent-16-million-to-pro-talarico-super-pac-after/",
+   "url": "https://www.unleashed.news/news/2026/11/hoffman-sent-16-million-to-pro-talarico-super-pac-after/",
+   "published_at": "2026-11-14T00:00:00.000Z",
+   "retracted": false
+  },
+  {
    "id": 19,
    "kicker": "BREAKING NEWS · UPDATED",
    "headline": "Sources Say an L3Harris Network Update Crashed the System That Grounded U.S. Flights",
