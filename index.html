@@ -102,7 +102,7 @@
   .ld__stage { position: relative; width: min(100%, calc(76vh * 16 / 9)); margin: 0 auto; aspect-ratio: 16 / 9; background: #000; }
   .ld__v { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
   .ld__over { position: absolute; inset: 0; z-index: 1; cursor: pointer; background: linear-gradient(180deg, rgba(6,6,11,.18) 0%, rgba(6,6,11,.35) 38%, rgba(6,6,11,.8) 70%, rgba(6,6,11,.95) 100%); transition: opacity .35s ease, visibility .35s; }
-  .ld__play { position: absolute; left: 50%; top: 34%; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(64px, 7vw, 96px); height: clamp(64px, 7vw, 96px); padding: 0; border-radius: 50%; border: 3px solid #fff; background: linear-gradient(135deg, rgba(232,16,127,.92), rgba(31,108,255,.92)); box-shadow: 0 0 0 0 rgba(255,46,154,.55), 0 10px 30px rgba(0,0,0,.5); cursor: pointer; animation: ldPulse 2.2s ease-out infinite; transition: transform .2s ease; }
+  .ld__play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: clamp(64px, 7vw, 96px); height: clamp(64px, 7vw, 96px); padding: 0; border-radius: 50%; border: 3px solid #fff; background: linear-gradient(135deg, rgba(232,16,127,.92), rgba(31,108,255,.92)); box-shadow: 0 0 0 0 rgba(255,46,154,.55), 0 10px 30px rgba(0,0,0,.5); cursor: pointer; animation: ldPulse 2.2s ease-out infinite; transition: transform .2s ease; }
   .ld__play svg { width: 46%; height: 46%; margin-left: 8%; }
   .ld__play:hover, .ld__play:focus-visible { transform: translate(-50%, -50%) scale(1.08); }
   @keyframes ldPulse { 0% { box-shadow: 0 0 0 0 rgba(255,46,154,.55), 0 10px 30px rgba(0,0,0,.5); } 100% { box-shadow: 0 0 0 22px rgba(255,46,154,0), 0 10px 30px rgba(0,0,0,.5); } }
@@ -110,7 +110,6 @@
   .ld__text { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 12px; padding: clamp(18px, 3vw, 40px) clamp(18px, 3.2vw, 44px); max-width: 1080px; cursor: default; }
   .ld__h { margin: 0; font: 800 clamp(26px, 3.3vw, 46px)/1.08 var(--font-d); text-wrap: balance; }
   .ld__h a { color: #fff; text-decoration: none; text-shadow: 0 2px 18px rgba(0,0,0,.6); } .ld__h a:hover { color: #ffd6ea; }
-  .ld__dek { margin: 0; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.45; color: #dce3f0; max-width: 860px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .ld__row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin: 4px 0 0; }
   .ld__read { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font: 800 16px/1 var(--font-d); letter-spacing: .14em; text-transform: uppercase; color: #fff; text-decoration: none; background: linear-gradient(90deg, var(--mag), var(--blu)); border-radius: 4px; box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: filter .2s, transform .2s; }
   .ld__read:hover, .ld__read:focus-visible { filter: brightness(1.12); transform: translateY(-1px); color: #fff; }
@@ -120,11 +119,11 @@
   .ld__bar .ld__read { flex: none; padding: 10px 18px; font-size: 14px; }
   .ld.is-on .ld__over { opacity: 0; visibility: hidden; pointer-events: none; }   /* playing: the headline is never over the video */
   .ld.is-on .ld__bar { display: flex; }
-  @media (max-width: 599px) {   /* phones: a square poster card for the headline; the full 16:9 picture once it plays */
-    .ld__stage { aspect-ratio: 1 / 1; }
+  @media (max-width: 599px) {   /* phones: a tall poster card for the headline; the full 16:9 picture once it plays */
+    .ld__stage { aspect-ratio: 3 / 4; }
     .ld__v { object-fit: cover; }
     .ld.is-on .ld__stage { aspect-ratio: 16 / 9; } .ld.is-on .ld__v { object-fit: contain; }
-    .ld__play { top: 19%; width: 60px; height: 60px; } .ld__text { gap: 10px; padding: 16px; } .ld__h { font-size: 25px; } .ld__dek { display: none; }
+    .ld__play { width: 64px; height: 64px; } .ld__text { gap: 10px; padding: 16px; } .ld__h { font-size: 25px; }
     .ld__read { padding: 11px 18px; font-size: 15px; } .ld__meta { font-size: 12px; }
     .ld__bar { flex-direction: column; align-items: flex-start; } .ld__bh { font-size: 19px; }
   }
@@ -191,7 +190,6 @@
         <div class="ld__text">
           <span class="fc__label"><span class="sc__logo fc__logo" aria-hidden="true">U<b>.</b></span><span>EXCLUSIVE</span></span>
           <h2 class="ld__h"><a href="/news/2026/11/exposed-in-real-time-an-information-operation-taking-shape/">Exposed in Real Time: An Information Operation Taking Shape to Blame Trump for Epstein’s Death</a></h2>
-          <p class="ld__dek">Within hours of a scientist saying he has “no idea who” killed Jeffrey Epstein, Unleashed.news’s real-time social intelligence caught the early signatures of an information operation taking shape to pin the death on President Trump: one 1.1-million-follower post naming him, a relay of high-reach accounts, copied wording and a recycled clip. Epstein’s own words point the other way.</p>
           <p class="ld__row"><a class="ld__read" href="/news/2026/11/exposed-in-real-time-an-information-operation-taking-shape/">Read Here <span aria-hidden="true">→</span></a><span class="ld__meta"><time datetime="2026-11-20T00:55:00.000Z">Nov. 20, 2026</time> · 22 min read · Video</span></p>
         </div>
       </div>
@@ -380,6 +378,9 @@ root.addEventListener('keydown',e=>{if(e.key==='ArrowRight')manual(next);if(e.ke
 let x0=null;root.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});root.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)manual(dx<0?next:prev)});
 mark();sync();})();</script>
 <script>(()=>{const root=document.querySelector('.ld');if(!root)return;const v=root.querySelector('.ld__v');const over=root.querySelector('.ld__over');
+const stage=root.querySelector('.ld__stage');const btn=root.querySelector('.ld__play');const txt=root.querySelector('.ld__text');
+const place=()=>{const h=stage.clientHeight,b=btn.offsetHeight,t=txt.offsetTop;if(!h||!b)return;btn.style.top=Math.round(Math.max(b/2+10,Math.min(h/2,t-b/2-16)))+'px';};
+place();addEventListener('resize',place);if(window.ResizeObserver)new ResizeObserver(place).observe(stage);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);
 const start=()=>{root.classList.add('is-on');v.controls=true;const p=v.play();if(p&&p.catch)p.catch(()=>{});};
 over.addEventListener('click',(e)=>{if(e.target.closest('a'))return;start();});
 v.addEventListener('play',()=>{root.classList.add('is-on');v.controls=true;});
