@@ -34,10 +34,28 @@
   .lede { font-size: 20px; color: var(--ice); }
   .dek { margin: -2px 0 12px; font-size: 21px; line-height: 1.4; color: #c8d2e6; font-weight: 500; }
   .qs { padding-left: 22px; } .qs li { margin: 0 0 8px; color: var(--ice); font-weight: 500; }
-  .feat { margin: 0 0 26px; } .feat img, .feat video { display: block; width: 100%; height: auto; border-radius: 8px; background: #000; }
+  .feat { margin: 0 0 26px; } .feat.inl { margin: 4px 0 26px; } .feat.inl video { max-height: 640px; object-fit: contain; } .feat img, .feat video { display: block; width: 100%; height: auto; border-radius: 8px; background: #000; }
   .feat figcaption { margin-top: 7px; font-size: 11.5px; line-height: 1.45; color: var(--muted); } .feat figcaption a { color: var(--muted); }
   h2 { margin: 30px 0 6px; font: 800 20px/1.2 'Barlow Condensed', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--ice); }
   .src { padding-left: 22px; font-size: 16px; } .src span { color: var(--muted); }
+  .found { margin: 6px 0 30px; padding: 18px 20px 8px; border-left: 4px solid var(--hot); background: rgba(232,16,127,.06); border-radius: 0 10px 10px 0; }
+  .found h2 { margin: 0 0 8px; } .found ul { margin: 0; padding-left: 20px; } .found li { margin: 0 0 10px; font-size: 17px; line-height: 1.5; }
+  h2.sub { margin-top: 38px; }
+  .ev-intro { color: var(--muted); font-size: 16px; margin-top: -4px; }
+  .ev-claim { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 10px; margin: 0 0 16px; }
+  .ev-text { margin: 0 0 8px; font-size: 17px; line-height: 1.5; }
+  .ev-row { margin: 10px 0 6px; } .ev-row ul { margin: 6px 0 0; padding-left: 20px; font-size: 15.5px; line-height: 1.45; } .ev-row li { margin: 5px 0; } .ev-row li span { color: var(--muted); }
+  .ev-row q { display: block; color: var(--muted); font-style: italic; font-size: 14.5px; margin-top: 2px; }
+  .ev-cat { display: inline-block; font: 700 11px/1 system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 5px 8px; border-radius: 4px; color: #fff; }
+  .ev-cat.c1 { background: #0b7a3b; } .ev-cat.c2 { background: #1f5fbf; } .ev-cat.c3 { background: #6a4bb5; }
+  .xp { display: block; max-width: 560px; margin: 4px auto 26px; padding: 14px 16px 12px; border: 1px solid #cfd9de; border-radius: 14px; background: #fff; color: #0f1419; text-decoration: none; font: 15px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'; }
+  .xp:hover { background: #f7f9f9; } .xp__head { display: flex; align-items: center; gap: 10px; } .xp img.xp__av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; margin: 0; }
+  .xp__who { display: flex; flex-direction: column; min-width: 0; } .xp__name { font-weight: 700; display: flex; align-items: center; gap: 3px; } .xp__name svg { width: 17px; height: 17px; flex: none; }
+  .xp__handle, .xp__meta { color: #536471; font-size: 14px; } .xp__logo { margin-left: auto; width: 20px; height: 20px; flex: none; }
+  .xp__text, .xp__meta, .xp__head, .xp__stats, .xp__go { display: block; } .xp__head, .xp__stats { display: flex; } .xp__text { margin: 10px 0 8px; white-space: pre-wrap; word-wrap: break-word; font-size: 16px; }
+  .xp img.xp__img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover; object-position: top; border-radius: 12px; border: 1px solid #cfd9de; margin: 2px 0 8px; }
+  .xp__stats { display: flex; flex-wrap: wrap; gap: 14px; color: #536471; font-size: 14px; border-top: 1px solid #eff3f4; padding-top: 9px; margin-top: 6px; } .xp__stats b { color: #0f1419; }
+  .xp__go { display: block; margin-top: 8px; color: #1d9bf0; font-weight: 600; font-size: 14px; }
   .share { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; }
   .retract { font-size: 20px; color: var(--ice); }
   .upd { display: flex; flex-direction: column; gap: 4px; margin: -12px 0 24px; padding: 14px 16px; border-left: 5px solid var(--hot); border-radius: 6px; background: rgba(255,46,154,.1); color: var(--txt); font-size: 16px; line-height: 1.45; }
@@ -48,6 +66,36 @@
   .addendum__tag { display: inline-block; font: 800 13px/1 'Barlow Condensed', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #fff; background: var(--hot); padding: 6px 10px; border-radius: 4px; }
   .addendum h2 { margin: 12px 0 8px; }
   footer { text-align: center; color: var(--muted); font-size: 13px; padding: 26px 20px; border-top: 1px solid var(--line); }
+  .au { display: flex; align-items: center; gap: 22px; margin: -4px 0 34px; padding: 0 0 22px; border-bottom: 1px solid var(--line); }
+  .au__img { flex: none; width: 168px; height: auto; transform: rotate(-3deg); transform-origin: 50% 60%; filter: drop-shadow(0 10px 14px rgba(0,0,0,.38)) drop-shadow(0 2px 3px rgba(0,0,0,.25)); }
+  .au__txt { min-width: 0; padding-left: 18px; border-left: 3px solid var(--hot); }
+  .au__name { display: block; font: 800 30px/1 'Barlow Condensed', sans-serif; letter-spacing: .01em; text-transform: uppercase; color: var(--ice); margin-bottom: 8px; }
+  .au__role { display: block; font-size: 15.5px; line-height: 1.4; font-weight: 500; color: var(--muted); }
+  .au__role + .au__role { margin-top: 3px; }
+  .au__role a { color: var(--ice); font-weight: 600; text-decoration: none; } .au__role a:hover { color: var(--hot); }
+  @media (max-width: 560px) { .au { gap: 14px; } .au__img { width: 118px; } .au__txt { padding-left: 12px; } .au__name { font-size: 23px; margin-bottom: 6px; } .au__role { font-size: 13.5px; } }
+  .bk { font-family: 'Barlow', system-ui, sans-serif; }
+  .bk a { text-decoration: none; }
+  .bk__lbl { display: block; font: 800 13px/1 'Barlow Condensed', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--hot); }
+  .bk__title { display: block; font: 800 25px/1.05 'Barlow Condensed', sans-serif; color: var(--ice); }
+  .bk__title:hover { color: var(--hot); }
+  .bk__by { display: block; margin-top: 6px; font-size: 14.5px; line-height: 1.35; color: var(--muted); }
+  .bk__cov img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 12px 28px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.18); transition: transform .2s ease; }
+  .bk__cov:hover img { transform: translateY(-3px); }
+  .bk__btn { display: block; margin-top: 14px; padding: 12px 14px; border-radius: 8px; background: #d4121e; color: #fff !important; text-align: center; font: 800 17px/1 'Barlow Condensed', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .bk__btn:hover { background: #b00f19; }
+  .bk--side { display: none; }
+  .bk--side .bk__lbl { margin-bottom: 14px; } .bk--side .bk__cov img { max-width: 236px; margin: 0 auto 16px; }
+  .bk--side .bk__blurb { margin: 10px 0 0; font-size: 15.5px; line-height: 1.5; color: var(--txt); }
+  .bk__site { display: block; margin-top: 10px; text-align: center; font-size: 14px; font-weight: 600; color: var(--muted); } .bk__site:hover { color: var(--ice); }
+  .bk--inl { display: flex; gap: 16px; align-items: center; margin: 0 0 30px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; }
+  .bk--inl .bk__cov { flex: none; width: 92px; } .bk--inl .bk__txt { min-width: 0; } .bk--inl .bk__lbl { margin-bottom: 6px; } .bk--inl .bk__title { font-size: 22px; } .bk--inl .bk__btn { display: inline-block; margin-top: 10px; padding: 10px 16px; font-size: 15px; }
+  main.has-side { max-width: 1340px; } main.has-side > .sim { grid-column: 1 / -1; }
+  @media (min-width: 1180px) {
+    main.has-side { display: grid; grid-template-columns: minmax(0, 876px) 300px; gap: 56px; justify-content: center; align-items: start; }
+    .bk--side { display: block; position: sticky; top: 24px; padding: 20px 20px 16px; border: 1px solid var(--line); border-radius: 12px; }
+    .bk--inl { display: none; }
+  }
   @media (min-width: 1024px) { body { font-size: 19px; } h1 { font-size: clamp(46px, 4.4vw, 58px); } .dek { font-size: 22px; } .lede { font-size: 21px; } }   /* laptops, desktops, tablets turned sideways */
 
   :root { --ink: #ffffff; --ice: #0b0b14; --txt: #262c38; --muted: #5d6676; --hot: #e0107a; --blu: #1f5fe0; --line: rgba(10,12,20,.12); }
@@ -69,7 +117,10 @@
     <div class="date">November 1, 2026 · 9:08 PM UTC</div>
     
     <figure class="feat"><img src="document.jpg" alt="The email headed “Preparing for pandemics,” forwarded to Jeffrey Epstein on March 20, 2015, with names redacted." width="960" height="729" loading="eager"><figcaption>Document: the “Preparing for pandemics” email as forwarded to Epstein on March 20, 2015, from the U.S. Justice Department’s Epstein Library, as posted by <a href="https://x.com/WallStreetApes/status/2023117511018033163" target="_blank" rel="noopener">@WallStreetApes</a> on X.</figcaption></figure>
+    
     <p class="lede">The “Preparing for pandemics” email now circulating as evidence against Jeffrey Epstein was written on March 19, 2015, by Walter Kemp, an official of the International Peace Institute, a New York think tank that works with the United Nations, to the institute’s president, Terje Rød-Larsen, who forwarded it to Epstein the next day. It proposed involving “the WHO and ICRC (i.e. co-branding)” in a Geneva meeting, <a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00861674.pdf" target="_blank" rel="noopener">Justice Department records show</a>, not the CDC. The more revealing document sits nearby: in June 2015, Rød-Larsen’s office sent Epstein its draft invitation asking Bill Gates to give the meeting’s keynote, and Epstein sent back his verdict.</p>
+      
+      
       <p>A <a href="https://x.com/WallStreetApes/status/2023117511018033163" target="_blank" rel="noopener">Feb. 15, 2026, post on X</a> by the account Wall Street Apes said a 2015 email to Epstein “revealed” that its sender wrote: “Let’s discuss next steps… how to officially involve the WHO and CDC,” and “I hope we can pull this off.” The post linked to no document.</p>
       <p>The email exists in the Justice Department’s Epstein Library, in two copies. The full sentence reads: “Let’s discuss next steps, for example how to officially involve the WHO and ICRC (i.e. co-branding).” The ICRC is the International Committee of the Red Cross. The Centers for Disease Control and Prevention appear nowhere in the message. The post’s ellipsis removed “for example,” and its quotation stopped before “(i.e. co-branding),” the words that show what “involve” meant: putting the organizations’ names on an event.</p>
       <p>Kemp wrote from an IPI address to Rød-Larsen, copying three colleagues, and attached “a draft agenda for the meeting on preparing for pandemics, as requested.” He signed off: “Best regards, and I hope we can pull this off!” Rød-Larsen forwarded the message from his iPhone to Epstein’s Gmail account, <a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00654215.pdf" target="_blank" rel="noopener">a second copy in the files shows</a>. Hours later on March 20, Epstein forwarded it again, to a recipient whose name the Justice Department redacted.</p>
@@ -84,9 +135,11 @@
       <h2>The point</h2><p>What we found: the viral email is real, but it was misquoted where it matters. It names the Red Cross’s ICRC, not the CDC, and the “involvement” it sought was co-branding a public conference on lessons from Ebola and polio. Nothing in it describes a plan to cause or simulate a pandemic. The eureka lies elsewhere in the same files: the president of a UN-facing think tank sent his keynote invitation to Bill Gates to Epstein for approval, and the rewrite followed Epstein’s instructions line by line. The record casts Epstein, years after his conviction, as a gatekeeper to Gates.</p>
       <h2>Why it matters</h2><p>Misquoted documents spread faster than the files they come from, and a one-word swap can turn a conference-planning note into a supposed plot. The real record raises a sharper question: how a convicted sex offender came to be consulted on how a UN-facing institute should approach one of the world’s most powerful philanthropists. Every document cited here is public, and readers can check each one against the post.</p>
       <h2>The questions</h2><ul class="qs"><li>Why did IPI’s president send his keynote invitation to Bill Gates to Epstein for approval before it went out?</li><li>Was the revised invitation ever sent, and did Gates or his foundation respond to it?</li><li>Who received the “Preparing for pandemics” email when Epstein forwarded it on March 20, 2015, and why?</li><li>Did Epstein’s role as an adviser on the Gates pitch have any connection to the Epstein-foundation donations IPI later acknowledged?</li></ul>
+      
       <h2>Sources</h2><ol class="src"><li><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00861674.pdf" target="_blank" rel="noopener">EFTA00861674: Epstein forwards “Preparing for pandemics” (Walter Kemp to Terje Rød-Larsen, March 19, 2015)</a> <span>U.S. Department of Justice, Epstein Library (Data Set 9)</span></li><li><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00654215.pdf" target="_blank" rel="noopener">EFTA00654215: Rød-Larsen forwards “Preparing for pandemics” to Epstein, March 20, 2015</a> <span>U.S. Department of Justice, Epstein Library (Data Set 9)</span></li><li><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA01194684.pdf" target="_blank" rel="noopener">EFTA01194684: IPI draft agenda, “Preparing for Pandemics: Lessons Learned for More Effective Responses”</a> <span>U.S. Department of Justice, Epstein Library (Data Set 9)</span></li><li><a href="https://www.justice.gov/epstein/files/DataSet%2011/EFTA02679133.pdf" target="_blank" rel="noopener">EFTA02679133: IPI concept note, “Preparing for Pandemics: Lessons Learned for More Effective Responses”</a> <span>U.S. Department of Justice, Epstein Library (Data Set 11)</span></li><li><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA01194682.pdf" target="_blank" rel="noopener">EFTA01194682: “RE: draft email” — IPI sends Epstein the draft invitation to Gates, June 11, 2015</a> <span>U.S. Department of Justice, Epstein Library (Data Set 9)</span></li><li><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00855459.pdf" target="_blank" rel="noopener">EFTA00855459: Rød-Larsen forwards his conference invitation to “Bill” to Epstein, June 2, 2015</a> <span>U.S. Department of Justice, Epstein Library (Data Set 9)</span></li><li><a href="https://www.ipinst.org/2015/09/preparing-for-pandemics" target="_blank" rel="noopener">Preparing for Pandemics</a> <span>International Peace Institute</span></li><li><a href="https://www.ipinst.org/wp-content/uploads/2020/10/20201029_IPIBoard_Final.pdf" target="_blank" rel="noopener">Statement by the Board of the International Peace Institute: Resignation of President Terje Rød-Larsen</a> <span>International Peace Institute</span></li><li><a href="https://observador.pt/factchecks/fact-check-ficheiros-do-caso-epstein-mostram-discussao-para-a-simulacao-de-uma-pandemia-com-bill-gates-antes-da-covid-19/" target="_blank" rel="noopener">Fact Check. Ficheiros do caso Epstein mostram discussão para a simulação de uma pandemia com Bill Gates antes da Covid-19?</a> <span>Observador (José Carlos Duarte)</span></li><li><a href="https://jewishworldreview.com/0226/epstein_top_diplomatic_fixer.php" target="_blank" rel="noopener">Epstein’s top diplomatic fixer</a> <span>Bloomberg (Kati Pohjanpalo and Ott Ummelas), republished by Jewish World Review</span></li><li><a href="https://www.pbs.org/newshour/world/norwegian-ambassador-resigns-amid-scrutiny-over-her-contacts-with-epstein" target="_blank" rel="noopener">Norwegian ambassador resigns amid scrutiny over her contacts with Epstein</a> <span>The Associated Press, via PBS NewsHour</span></li><li><a href="https://abc30.com/post/bill-gates-denies-wrongdoing-latest-release-epstein-files-ex-wife-melinda-french-gate-calls/18542379/" target="_blank" rel="noopener">‘I was foolish’: Bill Gates denies wrongdoing after latest release of Epstein files</a> <span>ABC News (Bill Hutchinson), via ABC30</span></li></ol>
     <div class="share"><a href="https://x.com/intent/post?text=Epstein%20Told%20a%20Think%20Tank%20How%20to%20Pitch%20Bill%20Gates%3A%20%E2%80%98Bill%20Will%20Not%20Go%E2%80%99&url=https%3A%2F%2Fwww.unleashed.news%2Fnews%2F2026%2F11%2Fepstein-told-a-think-tank-how-to-pitch-bill%2F" target="_blank" rel="noopener">Share on X</a><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.unleashed.news%2Fnews%2F2026%2F11%2Fepstein-told-a-think-tank-how-to-pitch-bill%2F" target="_blank" rel="noopener">Share on Facebook</a></div>
   </article>
+  
 </main>
 <footer>© 2026 Unleashed.news</footer>
 </body>

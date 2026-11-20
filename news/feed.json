@@ -3,6 +3,15 @@
  "home_page_url": "https://www.unleashed.news/news/",
  "items": [
   {
+   "id": 20,
+   "kicker": "EXCLUSIVE",
+   "headline": "Exposed in Real Time: An Information Operation Taking Shape to Blame Trump for Epstein’s Death",
+   "path": "/news/2026/11/exposed-in-real-time-an-information-operation-taking-shape/",
+   "url": "https://www.unleashed.news/news/2026/11/exposed-in-real-time-an-information-operation-taking-shape/",
+   "published_at": "2026-11-20T00:55:00.000Z",
+   "retracted": false
+  },
+  {
    "id": 10,
    "kicker": "BREAKING NEWS",
    "headline": "Hoffman Sent $16 Million to Pro-Talarico Super PAC After Admitting More Epstein Meetings",
